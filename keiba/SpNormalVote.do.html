@@ -1,0 +1,1052 @@
+
+
+
+<!DOCTYPE html>
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+
+
+
+ 
+
+
+
+
+
+<html>
+<head>
+    <base href="https://sp.st.oddspark.com/">
+	<meta http-equiv="content-style-type" content="text/css" />
+	<meta http-equiv="content-script-type" content="text/javascript" />
+	<meta http-equiv="content-language" content="ja" />
+	<meta name="robots" content="noindex" />
+	
+
+
+
+<meta name="Keywords" content="地方競馬,競馬,馬券,投票,馬券購入,レース情報,予想,映像" />
+<meta name="Description" content="オッズパーク競馬は地方競馬の馬券をパソコンや携帯電話などで購入出来る！予想情報やレース映像など地方競馬の情報が充実。" />
+<meta name="disparea" content="qvga" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="-1" />
+
+	
+
+
+
+
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="format-detection" content="telephone=no" />
+<meta name="viewport" content="user-scalable=no, width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+<link rel="apple-touch-icon" href="icon.png?19700101085959">
+<link rel="stylesheet" href="../sp_shared/css/import.css?19700101085959">
+<link id="import_css" rel="stylesheet" href="sp_shared/css/import.css?19700101085959">
+<link rel="apple-touch-icon-precomposed" href="/keiba/shared/images/apple-touch-icon-precomposed.png?19700101085959">
+
+	<script src="/sp_shared/js/jquery-3.6.0.min.js?19700101085959"></script>
+	<script src="/sp_shared/js/jquery.utility.js?19700101085959"></script>
+	<script src="/sp_shared/js/js.cookie.min.js?19700101085959"></script>
+	<script src="/sp_shared/js/lib.js?19700101085959" charset="UTF-8"></script>
+	<script src="/sp_shared/js/jsExtension.js?19700101085959"></script>
+	<script src="/sp_shared/js/MSG.js?19700101085959" charset="UTF-8"></script>
+	<script src="/sp_shared/js/Common.js?19700101085959" charset="UTF-8"></script>
+	<script src="/sp_shared/js/Popup.js?19700101085959" charset="UTF-8"></script>
+	<script src="/sp_shared/js/NmlV.js?19700101085959" charset="UTF-8"></script>
+	<script src="/sp_shared/js/common/MsgPopup.js?19700101085959"></script>
+	<script src="/sp_shared/js/common/modalPopup.js?19700101085959"></script>
+	<script src="/sp_shared/js/common/amountPanel.js?19700101085959"></script>
+	<script src="/sp_shared/js/common/combinationList.js?19700101085959" charset="UTF-8"></script>
+	<script src="/sp_shared/js/common/tenkaiPanel.js?19700101085959"></script>
+	<script src="/sp_shared/js/common/cartAddConfirm.js?19700101085959"></script>
+	<script src="/sp_shared/js/common/moveCheck.js?19700101085959"></script>
+	<script src="/sp_shared/js/common/moveCheckWrapper.js?19700101085959"></script>
+	<script src="/keiba/s_sp_shared/js/HZengoWow.js?19700101085959"></script>
+	<script src="/keiba/s_sp_shared/js/HZengoYosouInfo.js?19700101085959"></script>
+	<script src="/keiba/sp_shared/js/HRHead.js?19700101085959" charset="UTF-8"></script>
+	<script src="/keiba/sp_shared/js/HRModSel.js?19700101085959"></script>
+	<script src="/keiba/sp_shared/js/HNmlV.js?19700101085959"></script>
+	<script type="text/javascript">
+	<!--
+		var BET_TYPE = {
+							WIN: 1,
+							BRACKET_QUINELLA: 3,
+							BRACKET_EXACTA: 4,
+							QUINELLA: 5,
+							EXACTA: 6,
+							WIDE: 7,
+							TRIO: 8,
+							TRIFECTA: 9
+						};
+		var BETTING_METHODOLOGY = {
+									NORMAL: 1,
+									WHEEL: 2,
+									BOX: 3,
+									FORMATION: 4
+								};
+		var WHEEL_TYPE = {
+							FIRST_CENTER_FIXED: 1,
+							SECOND_CENTER_FIXED: 2,
+							FIRST_PLACED_FIXED: 3,
+							SECOND_PLACED_FIXED: 4,
+							THIRD_PLACED_FIXED: 5,
+							FIRSTSECOND_PLACED_FIXED: 6,
+							FIRSTTHIRD_PLACED_FIXED: 7,
+							SECONDTHIRD_PLACED_FIXED: 8
+						};
+	-->
+	</script>
+	<title>投票｜オッズパーク競馬</title>
+</head>
+
+<body class='sp-content'>
+	<div id="wrap">
+	
+	<input type="hidden" id="kaisaiBi" name="kaisaiBi" value="20260722" />
+	<input type="hidden" id="joCode" name="joCode" value="42" />
+	<input type="hidden" id="raceNo" name="raceNo" value="12" />
+	<input type="hidden" id="betType" name="betType" value="9" />
+	<input type="hidden" id="tohyoHoshiki" name="tohyoHoshiki" value="1" />
+	<input type="hidden" id="sortType" name="sortType" value="5" />
+	<input type="hidden" id="wheelType" name="wheelType" value="" />
+	<input type="hidden" id="multiFlag" name="multiFlag" value="0" />
+	<input type="hidden" id="cartId" name="cartId" value="" />
+	
+	<input type="hidden" id="raceHeaderDispFlag" value="true" />
+	<input type="hidden" id="dpWakuStr" value="7,8"/>
+	<input type="hidden" id="duplicatableWakuArrayJson" value='["7","8"]' />
+	
+	<input type="hidden" id="HNmlV_amountPanelJson" value="{&quot;actionMode&quot;:&quot;add&quot;,&quot;amountDispType&quot;:2,&quot;amountType&quot;:0,&quot;betCount&quot;:0,&quot;buyLimit&quot;:17830,&quot;kingaku&quot;:&quot;&quot;,&quot;memberSetUpperLimitZandaka&quot;:0,&quot;opcoinTotalAmount&quot;:0,&quot;rfOpcoin&quot;:0,&quot;totalAmount&quot;:0,&quot;upperLimitSetFlg&quot;:0,&quot;voteCount&quot;:0}" />
+	
+	
+	
+
+
+
+
+
+ 
+<div class="sp-content"><header class="nav-bar-header"><h1 class="site-id"><a href="/">投票｜オッズパーク競馬</a></h1><a class="menu" href="javaScript: void(0)">menu</a></header><nav><ul class="global-nav">  <li class="global-nav-keiba"><a href="/keiba/"><span>競馬</span></a></li>  <li class="global-nav-keirin"><a href="/keirin/"><span>競輪</span></a></li>  <li class="global-nav-auto"><a href="/autorace/"><span>オート</span></a></li>  <li class="global-nav-loto"><a href="/loto/"><span>ロト</span></a></li><li class="global-nav-non-cart"><a class="a-cart" href="/keiba/SpCmVoteConfirm.do?returnURL=" id="direct"><span>カート</span></a></li></ul></nav></div>
+
+	
+	
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+<div id="HRHead" style="display:none;">
+<span id="rh_sts">{&quot;day&quot;:&quot;20260722&quot;,&quot;dispVideo&quot;:true,&quot;dispVote&quot;:true,&quot;hsts&quot;:&quot;2&quot;,&quot;isMaeuri&quot;:&quot;false&quot;,&quot;jnm&quot;:&quot;笠松&quot;,&quot;jo&quot;:&quot;42&quot;,&quot;ksts&quot;:[7,7,7,0,7,7,7,7,7],&quot;psts&quot;:&quot;0&quot;,&quot;rac&quot;:12,&quot;raceMatomeArrow&quot;:true,&quot;sponsor&quot;:&quot;20&quot;,&quot;stop&quot;:0,&quot;voteArrow&quot;:true,&quot;voteValid&quot;:&quot;0&quot;}</span>
+<span id="HRHead_pid">1</span>
+<span id="HRHead_gid">h4001</span>
+<span id="HRHead_gtype">1</span>
+<span id="HRHead_rac">12</span>
+</div>
+<div id="race-header" class="wrap">
+
+
+
+
+<!-- レース・機能選択ボタン -->
+<nav>
+<ul class="race-select2">
+  <li><a class="btn-reg HRHead_JoSel">笠松<span class="ico-pop-up">&nbsp;</span></a></li>
+  <li data-jo="42"><a class="btn-reg HRHead_RaceSel">12R<span class="ico-pop-up">&nbsp;</span></a></li>
+  <li><a class="btn-reg HRHead_ModSel ">通常投票<span class="ico-pop-up">&nbsp;</span></a></li>
+    <!-- 前レース -->
+    
+    
+      
+      <li><a class="btn-reg btn-prev HRHead_toPrev">11R</a></li>
+      
+    
+    <!-- 後レース -->
+    
+      <li><a class="btn-reg btn-next disabled">&nbsp;</a></li>
+    
+    
+</ul>
+</nav>
+
+<!-- 中止メッセージ -->
+
+
+<!-- レース情報部 -->
+<div class="race-info">
+<ul class="race-info-header">
+  <li class="HRHead_toYoso"><span class="ico-pop-up">&nbsp;</span><a>予想情報</a></li>
+</ul>
+<ul class="state"><li>発売中</li><li>14:58締切</li></ul>
+<p class="date">2026年7月22日&nbsp;<span class="raceGrade "></span></p>
+<p class="name ryaku-l2">ＳＰＡＴ４プレミアムポイント賞競走Ａ２以下選抜特別</p>
+
+<ul class="other">
+  
+  
+  
+    
+  
+  
+  <li>ダ1800m</li>
+  <!-- 発送時刻 -->
+   <li>15:00発走</li>
+</ul>
+</div>
+<a class="ico-show-on">開く</a>
+
+<!-- 展開部 -->
+<div class="race-info-detail" style="display:none;">
+<!-- 展開部.予想 -->
+
+<div class="boxL">
+  <h2><a class="HRHead_toYoso" href="javaScript:void(0)">予想A</a><span class="ico-pop-up">&nbsp;</span></h2>
+  <table>
+  
+    
+  <tr>
+  <td class="td-expected-sign"><span class="ficon-2maru"></span></td>
+    <td class="horse-num">3.</td>
+    <td>アンジュレーヴ</td>
+  </tr>
+    
+  <tr>
+  <td class="td-expected-sign"><span class="ficon-maru"></span></td>
+    <td class="horse-num">6.</td>
+    <td>アンモラル</td>
+  </tr>
+    
+  <tr>
+  <td class="td-expected-sign"><span class="ficon-tri_b"></span></td>
+    <td class="horse-num">5.</td>
+    <td>アンティーマリー</td>
+  </tr>
+    
+  <tr>
+  <td class="td-expected-sign"><span class="ficon-tri_w"></span></td>
+    <td class="horse-num">7.</td>
+    <td>アンワンワールド</td>
+  </tr>
+    
+  <tr>
+  <td class="td-expected-sign"><span class="ficon-tri_w"></span></td>
+    <td class="horse-num">2.</td>
+    <td>アンジュループ</td>
+  </tr>
+    
+  
+  
+  </table>
+</div>
+<div class="boxR">
+  <h2><a class="HRHead_toYoso" href="javaScript:void(0)">予想B</a><span class="ico-pop-up HRHead_toYoso">&nbsp;</span></h2>
+  <table>
+  
+    
+  <tr>
+  <td class="td-expected-sign"><span class="ficon-2maru"></span></td>
+    <td class="horse-num">3.</td>
+    <td>アンジュレーヴ</td>
+  </tr>
+    
+  <tr>
+  <td class="td-expected-sign"><span class="ficon-maru"></span></td>
+    <td class="horse-num">5.</td>
+    <td>アンティーマリー</td>
+  </tr>
+    
+  <tr>
+  <td class="td-expected-sign"><span class="ficon-tri_b"></span></td>
+    <td class="horse-num">6.</td>
+    <td>アンモラル</td>
+  </tr>
+    
+  <tr>
+  <td class="td-expected-sign"><span class="ficon-tri_w"></span></td>
+    <td class="horse-num">2.</td>
+    <td>アンジュループ</td>
+  </tr>
+    
+  
+  
+  </table>
+</div>
+
+  
+    <p><small class="info-src">予想情報提供 競馬エース</small></p>
+  
+
+
+
+
+<!-- 展開部.人気ハイライト -->
+<h2>上位人気</h2>
+<table>
+
+  
+<tr>
+  <td class="td-popularity">1番人気</td>
+  <td class="horse-num">1.</td>
+  <td class="w130px">アンジュディアブル</td>
+  <td class="w30px al-right">166.6</td>
+  <td>&nbsp;</td>
+</tr>
+  
+<tr>
+  <td class="td-popularity">2番人気</td>
+  <td class="horse-num">4.</td>
+  <td class="w130px">アンダーザシー</td>
+  <td class="w30px al-right">174.1</td>
+  <td>&nbsp;</td>
+</tr>
+  
+<tr>
+  <td class="td-popularity">4番人気</td>
+  <td class="horse-num">5.</td>
+  <td class="w130px">アンティーマリー</td>
+  <td class="w30px al-right">233.1</td>
+  <td>&nbsp;</td>
+</tr>
+  
+
+
+</table>
+
+
+<!-- 展開部.変更情報 -->
+<h2>変更情報</h2>
+
+
+<table>
+<tr>
+  <td>なし</td>
+</tr>
+</table>
+
+
+
+<!-- 展開部.その他参考情報 -->
+<h2><a class="HRHead_help" href="javaScript: void(0)">その他参考情報<span class="ico-q">&nbsp;</span></a></h2>
+<table>
+
+
+<tr>
+  <td>なし</td>
+</tr>
+
+</table>
+<!-- 展開部.リンク -->
+<nav>
+<ul class="race-info-detail-footer">
+  <li class="HRHead_toZen5"><span class="ico-pop-up">&nbsp;</span><a>前5走・成績</a></li>
+
+
+  <li class="HRHead_toLive"><span class="ico-live-video">&nbsp;</span><a target="_blank" href="">ライブ映像</a></li>
+
+</ul>
+</nav>
+<a class="ico-show-off">閉じる</a>
+
+</div>
+<!-- //展開部 -->
+
+
+</div>
+
+	
+	
+	
+	
+	<section id="view-type" class="view-type">
+		<section>
+			
+			<a id="betTypeSelect" class="btn-reg bet-type"><span class="title">&nbsp;</span>3連単<span class="ico-pop-up">&nbsp;</span></a>
+			
+			
+				
+				
+					<a id="tohyoHoshikiSelect" class="btn-reg bet-type"><span class="title2">&nbsp;</span>通常<span class="ico-pop-up">&nbsp;</span></a>
+				
+			
+			
+			<ul id="sortPullDown" class="pull-down">
+				
+					
+				
+					
+				
+					
+						<li id="sortType5" class="sortList">馬番順</li>
+					
+				
+			</ul>
+			
+			<div id="sortListPullDown">
+				<ul>
+					
+						
+						
+							<li id="sortList1" class="sortList">人気順</li>
+						
+					
+						
+						
+							<li id="sortList3" class="sortList">高配当順</li>
+						
+					
+						
+							<li id="sortList5" class="sortList activated">馬番順</li>
+						
+						
+					
+				</ul>
+			</div>
+		</section>
+		<section>
+			<p class="reload"><a id="oddsGetTime" class="txt-reload">13:12現在</a></p>
+		</section>
+	</section>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+
+
+
+
+
+
+
+
+
+
+
+
+<table id="bet-table" class="bet-table">
+	
+	
+		<tr class="hidden">
+			<td class="bet-btn"></td>
+			<td class="bet-btn"></td>
+			<td class="bet-btn"></td>
+			<td></td>
+			<td class="w35px-w50px"></td>
+		</tr>
+		
+		<tr>
+			<th>1着</th>
+			<th>2着</th>
+			<th>3着</th>
+			<th>馬名</th>
+			<th class="odds"><span>オッズ</span></th>
+		</tr>
+		
+		
+			
+				<tr>
+			
+			
+				
+				
+				
+					
+					
+						
+						
+							<td class="n1 row1"><a class="btn-bet s col1">1</a></td>
+							<td class="n1 row1"><a class="btn-bet s col2">1</a></td>
+							<td class="n1 row1"><a class="btn-bet s col3">1</a></td>
+						
+					
+				
+				
+				<td class="linkage horse-name-td">
+					<a class="showWow" data-umaban="1">
+						<dl>
+							<dd class="horse-name">アンジュディアブル</dd>
+							<dd>橋本直哉（53.0）</dd>
+						</dl>
+						<span class="ico-pop-up">&nbsp;</span>
+					</a>
+				</td>
+				
+				<td class="al-center"><span class="odds">166</span></td>
+			</tr>
+		
+			
+				<tr>
+			
+			
+				
+				
+				
+					
+					
+						
+						
+							<td class="n2 row2"><a class="btn-bet s col1">2</a></td>
+							<td class="n2 row2"><a class="btn-bet s col2">2</a></td>
+							<td class="n2 row2"><a class="btn-bet s col3">2</a></td>
+						
+					
+				
+				
+				<td class="linkage horse-name-td">
+					<a class="showWow" data-umaban="2">
+						<dl>
+							<dd class="horse-name">アンジュループ</dd>
+							<dd>濱田達也（53.0）</dd>
+						</dl>
+						<span class="ico-pop-up">&nbsp;</span>
+					</a>
+				</td>
+				
+				<td class="al-center"><span class="odds">864</span></td>
+			</tr>
+		
+			
+				<tr>
+			
+			
+				
+				
+				
+					
+					
+						
+						
+							<td class="n3 row3"><a class="btn-bet s col1">3</a></td>
+							<td class="n3 row3"><a class="btn-bet s col2">3</a></td>
+							<td class="n3 row3"><a class="btn-bet s col3">3</a></td>
+						
+					
+				
+				
+				<td class="linkage horse-name-td">
+					<a class="showWow" data-umaban="3">
+						<dl>
+							<dd class="horse-name">アンジュレーヴ</dd>
+							<dd>林幻（53.0）</dd>
+						</dl>
+						<span class="ico-pop-up">&nbsp;</span>
+					</a>
+				</td>
+				
+				<td class="al-center"><span class="odds">245</span></td>
+			</tr>
+		
+			
+				<tr>
+			
+			
+				
+				
+				
+					
+					
+						
+						
+							<td class="n4 row4"><a class="btn-bet s col1">4</a></td>
+							<td class="n4 row4"><a class="btn-bet s col2">4</a></td>
+							<td class="n4 row4"><a class="btn-bet s col3">4</a></td>
+						
+					
+				
+				
+				<td class="linkage horse-name-td">
+					<a class="showWow" data-umaban="4">
+						<dl>
+							<dd class="horse-name">アンダーザシー</dd>
+							<dd>早田功駿（53.0）</dd>
+						</dl>
+						<span class="ico-pop-up">&nbsp;</span>
+					</a>
+				</td>
+				
+				<td class="al-center"><span class="odds">174</span></td>
+			</tr>
+		
+			
+				<tr>
+			
+			
+				
+				
+				
+					
+					
+						
+						
+							<td class="n5 row5"><a class="btn-bet s col1">5</a></td>
+							<td class="n5 row5"><a class="btn-bet s col2">5</a></td>
+							<td class="n5 row5"><a class="btn-bet s col3">5</a></td>
+						
+					
+				
+				
+				<td class="linkage horse-name-td">
+					<a class="showWow" data-umaban="5">
+						<dl>
+							<dd class="horse-name">アンティーマリー</dd>
+							<dd>早田秀二（53.0）</dd>
+						</dl>
+						<span class="ico-pop-up">&nbsp;</span>
+					</a>
+				</td>
+				
+				<td class="al-center"><span class="odds">233</span></td>
+			</tr>
+		
+			
+				<tr>
+			
+			
+				
+				
+				
+					
+					
+						
+						
+							<td class="n6 row6"><a class="btn-bet s col1">6</a></td>
+							<td class="n6 row6"><a class="btn-bet s col2">6</a></td>
+							<td class="n6 row6"><a class="btn-bet s col3">6</a></td>
+						
+					
+				
+				
+				<td class="linkage horse-name-td">
+					<a class="showWow" data-umaban="6">
+						<dl>
+							<dd class="horse-name">アンモラル</dd>
+							<dd>張田昂（53.0）</dd>
+						</dl>
+						<span class="ico-pop-up">&nbsp;</span>
+					</a>
+				</td>
+				
+				<td class="al-center"><span class="odds">523</span></td>
+			</tr>
+		
+			
+				<tr>
+			
+			
+				
+				
+				
+					
+					
+						
+						
+							<td class="n7 row7"><a class="btn-bet s col1">7</a></td>
+							<td class="n7 row7"><a class="btn-bet s col2">7</a></td>
+							<td class="n7 row7"><a class="btn-bet s col3">7</a></td>
+						
+					
+				
+				
+				<td class="linkage horse-name-td">
+					<a class="showWow" data-umaban="7">
+						<dl>
+							<dd class="horse-name">アンワンワールド</dd>
+							<dd>半澤慶実（53.0）</dd>
+						</dl>
+						<span class="ico-pop-up">&nbsp;</span>
+					</a>
+				</td>
+				
+				<td class="al-center"><span class="odds">407</span></td>
+			</tr>
+		
+			
+				<tr>
+			
+			
+				
+				
+				
+					
+					
+						
+						
+							<td class="n7 row8"><a class="btn-bet s col1">8</a></td>
+							<td class="n7 row8"><a class="btn-bet s col2">8</a></td>
+							<td class="n7 row8"><a class="btn-bet s col3">8</a></td>
+						
+					
+				
+				
+				<td class="linkage horse-name-td">
+					<a class="showWow" data-umaban="8">
+						<dl>
+							<dd class="horse-name">アヴァール</dd>
+							<dd>東原悠善（53.0）</dd>
+						</dl>
+						<span class="ico-pop-up">&nbsp;</span>
+					</a>
+				</td>
+				
+				<td class="al-center"><span class="odds">352</span></td>
+			</tr>
+		
+			
+				<tr>
+			
+			
+				
+				
+				
+					
+					
+						
+						
+							<td class="n8 row9"><a class="btn-bet s col1">9</a></td>
+							<td class="n8 row9"><a class="btn-bet s col2">9</a></td>
+							<td class="n8 row9"><a class="btn-bet s col3">9</a></td>
+						
+					
+				
+				
+				<td class="linkage horse-name-td">
+					<a class="showWow" data-umaban="9">
+						<dl>
+							<dd class="horse-name">アヴァリエ</dd>
+							<dd>藤井勘一郎（55.0）</dd>
+						</dl>
+						<span class="ico-pop-up">&nbsp;</span>
+					</a>
+				</td>
+				
+				<td class="al-center"><span class="odds">907</span></td>
+			</tr>
+		
+			
+				<tr>
+			
+			
+				
+				
+				
+					
+					
+						
+						
+							<td class="n8 row10"><a class="btn-bet s col1">10</a></td>
+							<td class="n8 row10"><a class="btn-bet s col2">10</a></td>
+							<td class="n8 row10"><a class="btn-bet s col3">10</a></td>
+						
+					
+				
+				
+				<td class="linkage horse-name-td">
+					<a class="showWow" data-umaban="10">
+						<dl>
+							<dd class="horse-name">アヴァレソー</dd>
+							<dd>藤江渉（53.0）</dd>
+						</dl>
+						<span class="ico-pop-up">&nbsp;</span>
+					</a>
+				</td>
+				
+				<td class="al-center"><span class="odds">367</span></td>
+			</tr>
+		
+		
+		<tr>
+			<td colspan="5" class="none" align="right"><a class="btn-clear-n">クリア</a></td>
+		</tr>
+	
+	
+
+	
+	
+	
+
+	
+	
+	
+
+	
+	
+	
+</table>
+
+
+	
+	
+	
+
+	
+	
+	
+    </div> 
+    
+	
+	
+	
+		
+		
+		
+		
+			
+			
+				
+
+
+
+<script src="/sp_shared/js/common/showOpcoinBreakDownPopup.js?19700101085959"></script>
+
+
+
+<div id="userInfo">
+            <table class="w100pr tb-enter-amount bg-1-lt">
+                <tbody>
+                <tr class="al-left h44" id="dispLimitZandaka">
+                    <th class="al-left bg-7-lt w140px">会員設定上限額(残額)</th>
+                    <td id="memberSetUpperLimitZandaka"  class="pL2">
+                        -円
+                    </td>
+                </tr>
+                <tr class="al-left h44" id="radioBuyLimit">
+                    <th class="al-left bg-7-lt w140px">
+                        <input type="radio" id="payment1" name="payment" value="0" checked="" style="height:15px; width:15px;">投票資金</th>
+                    <td id="buylimit" class="pL2">
+                        -円
+                    </td>
+                    <td id="buylimitnone" class="pL2" style="display: none;">
+                        ****円<a href="javascript:void(0);" onclick="buylimitDisplay();" style="color:#0000FF;"><u>表示</u></a>
+                    </td>
+                </tr>
+                <tr class="al-left h44" id="radioOpcoin">
+                    <th class="al-left bg-7-lt w140px">
+                        <input type="radio" id="payment2" name="payment" value="1" style="height:15px; width:15px;">OPコイン
+                    </th>
+					<td class="b0 pR0 pL0 disFlex">
+						<table border="0"><tbody><tr>
+							<td class="b0 pL2 w75pr" id ="opcoinTotalAmount">
+								-円
+							</td>
+							<td class="b0 pL2 w75pr" id ="opcoinTotalAmountNone" style="display: none;">
+								****円<a href="javascript:void(0);" onclick="opcoinTotalAmountDisplay();" style="color:#0000FF;"><u>表示</u></a>
+							</td>
+							<td class="b0 al-right">
+								<a href="javascript:odp.showOpcoinBreakDownPopup()"  class="EA-btn EA-btn--orange w60px h44 p0">内訳</a>
+							</td>
+						</tr></tbody></table>
+					</td>
+                </tr>
+            </tbody></table>
+</div>
+<div id="enter-amount">
+<div class="inner"><form>
+
+
+	<section class="enter">
+		<p><strong>投票金額</strong></p>
+		<p><input type="tel" id="ap_voteAmount" value="1" maxlength="4"></p>
+		<p>00円</p>
+	</section>
+	<section class="ad">
+		<p><span id="ap_ways"></span>通り × 投票金額 = <strong>合計</strong></p>
+		<p><strong><span  id="ap_total"></span>円</strong></p>
+	</section>
+
+
+
+<input type="text" name="dummy" style="display:none;">
+
+
+	
+		<a class="btn-add-cart" href="javascript:void(0)" id="ap_button1"><span class="ico-cart">&nbsp;</span>カートに追加</a>
+	
+
+
+	<section class="suppl">
+
+	</section>
+
+<table>
+<tr>
+  <td><span class="ico-cart">&nbsp;</span></td>
+  <td><p><strong>件数</strong></p><p><span id="ap_cart_num"></span>件</p></td>
+  <td><p><strong>合計金額</strong></p><p><span id="ap_cart_total"></span>円</p></td>
+</tr>
+</table>
+
+
+	<a class="btn-show-cart" href="javascript:void(0)" id="ap_confirm">カートの中身を確認</a>
+
+</form></div>
+</div>
+
+<script>
+	const agent = window.navigator.userAgent;
+	if (agent.indexOf("OPAPP") == -1 ) {
+		document.getElementById("buylimit").style.display = 'none';
+		document.getElementById("buylimitnone").style.display = '';
+		document.getElementById("opcoinTotalAmount").style.display = 'none';
+		document.getElementById("opcoinTotalAmountNone").style.display = '';
+	};
+
+</script>
+
+
+<script>
+	function buylimitDisplay() {
+		document.getElementById("buylimit").style.display = '';
+		document.getElementById("buylimitnone").style.display = 'none';
+	};
+	
+	function opcoinTotalAmountDisplay() {
+		document.getElementById("opcoinTotalAmount").style.display = '';
+		document.getElementById("opcoinTotalAmountNone").style.display = 'none';
+	};
+</script>
+			
+			
+			
+		
+		<input type="hidden" id="ways" />
+	
+	
+	
+	
+	
+	<form name="F_voteConfirm" id="F_voteConfirm" action="/keiba/SpCmVoteConfirm.do" method="get" style="display: none;">
+		<input type="hidden" name="returnURL" value="/keiba/SpNormalVote.do?tohyoHoshiki=1&amp;sortType=5">
+		<input type="hidden" name="gameType" value="1">
+		<input type="hidden" name="kaisaiBi" value="20260722">
+		<input type="hidden" name="joCode" value="42">
+		<input type="hidden" name="raceNo" value="12">
+		<input type="hidden" name="betType" value="9" />
+	</form>
+	
+
+	
+	
+
+
+
+<div class="sp-content"><footer><div><a class="page-top" href="javaScript:void(0);">ページ先頭へ</a></div><ul class="mem"><li><a href="/member/membership">メンバーシップ プログラム</a></li><li><a href="/user/my/WebMsgList.do">メッセージボックスを確認する<span class="new-date">（新着：7月16日）</span></a></li></ul><link href="/service/opsp_shared/css/op-footer.css?1718866664740&20251223123112" rel="stylesheet">
+<nav class="op-footer op-footer--keiba" aria-label="フッター">
+<ul class="footer-link">
+<li>
+<a href="/service/attention.html?foaf_sp">注意事項</a>
+</li>
+<li>
+<a href="/service/company.html?foaf_sp">会社案内</a>
+</li>
+<li>
+<a href="/service/sitepolicy.html?foaf_sp">サイトポリシー</a>
+</li>
+<li>
+<a href="/service/toiawase.html?foaf_sp">特定商取引法に基づく表示</a>
+</li>
+<li>
+<a href="/service/privacy.html?foaf_sp">個人情報保護方針</a>
+</li>
+<li>
+<a href="/service/information-security.html?foaf_sp">情報セキュリティ方針</a>
+</li>
+<li>
+<a href="/service/rule.html?foaf_sp">免責事項</a>
+</li>
+<li>
+<a href="/about/mailto/mailbefore.html?foaf_sp">ご意見・お問い合わせ</a>
+</li>
+<li>
+<a href="/service/customer-harassment.html?foaf_sp">カスタマーハラスメントに対する方針</a>
+</li>
+</ul>
+<div class="op-footer-logo">
+<a href="/?foaf_sp"><img src="/service/opsp_shared/images/logo-odds-park.png?20260319092843" width="173" height="37" alt="Odds Park"></a>
+</div>
+<script type="text/javascript" src="/shared/js/trace.js?20150326&amp;20220712020114&19700101085959"></script>
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-559FBD"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-559FBD');</script>
+<!-- End Google Tag Manager -->
+</nav>
+
+<ul class="display-switch"><li>表示</li><li><a style='pointer-events: auto !important;' href="javaScript: void(0);" class="to-mode-sp">スマートフォン</a></li><li><a href="https://www.st.oddspark.com/keiba/" class="to-mode-pc">PC</a></li></ul><div><p><small class="copyright">&copy;Odds Park Corp.</small></p></div></footer></div>
+<div class="nv-cover" style="display:none;"></div><sp class="sp-content" style='position: static'><div class="nv" style="display: none;"><div class="nv-wrapper"><div class="head"><div><span class="status">ログイン中</span><span class="name"></span></div><a href="/user/my/Index.do"><span class="member">楽天銀行会員&raquo;</span></a><a class="btn-close" href="javaScript: void(0);">×</a></div><div class="zan"><section><input type="hidden" id="hid_buylimit" name="buy_limit" value=""><input type="hidden" id="hid_buylimit_for_Emoney" name="buylimit_for_Emoney" value=""><input type="hidden" id="hid_refund_for_Emoney" name="refund_for_Emoney" value=""><input type="hidden" id="hid_accesstime" name="access_time" value=""><h3 class="pointer" store="nv-h-l" >残高<a class="arrow" href="javaScript:void(0);"><span class="ico-arrow open">&nbsp;</span></a></h3><ul class="zandaka-area-nb"><li>投票資金:<br><div id="buylimit"></div><br>OPコイン:<br><div id="buylimit_for_Emoney"></div><br>OPコイン的中残高:<br><div id="refund_for_Emoney"></div><div class="opcoin-syousai-button"><script src="/sp_shared/js/common/showOpcoinBreakDownPopup.js?19700101085959"></script><a href="javascript:odp.showOpcoinBreakDownPopup()">OPコイン詳細へ</a></div></li></ul></section></div><div><ul class="v">  <li><a class="m-link hs" href="/keiba/SpSalePlaceList.do?gamenId=&gamenKoumokuId=sideMenuKeibaSale">競馬<span class="bet">投票</span></a></li>  <li><a class="m-link kr" href="/keirin/SpSalePlaceList.do?gamenId=&gamenKoumokuId=sideMenuKeirinSale">競輪<span class="bet">投票</span></a></li>  <li><a class="m-link ar" href="/autorace/SpSalePlaceList.do?gamenId=&gamenKoumokuId=sideMenuAutoraceSale">オート<br>レース<span class="bet">投票</span></a></li>  <li><a class="m-link lt" href="/loto/SpSaleGoodsList.do?gamenId=&gamenKoumokuId=sideMenuLotoSale">LOTO<span class="bet">投票</span></a></li>  <li><a class="m-link c" href="/auth/SpVoteReceiptNoListW.do">照会</a></li>  <li><a class="m-link c" href="/SpNyukinMenu.do">入金・精算</a></li><li class="single"><a class="m-link c a-cart" href="/keiba/SpCmVoteConfirm.do?returnURL=" id="direct"><span class="cart">&nbsp;</span>投票内容確認（<span class="count">0</span>）</a></li></ul></div><div class="sale-field hs"><div class="sales"><section><h3 class="pointer" store="nv-h-a" forceacd="">本日(7/22)の発売場（競馬）<a class="arrow" href="javaScript:void(0);"><span class="ico-arrow close">&nbsp;</span></a></h3><ul class="v"><li><a class="m-link" href="/keiba/SpRaceList.do?joCd=03&kaisaiBi=20260722&gamenId=S101&gamenKoumokuId=sideMenuKeibaRaceList">帯広<span href="/keiba/SpLiveMovieSmart.do?opTrackCd=03" class="ico-live" style="display:block">LIVE</span></a></li><li><a class="m-link" href="/keiba/SpRaceList.do?joCd=41&kaisaiBi=20260722&gamenId=S101&gamenKoumokuId=sideMenuKeibaRaceList">金沢<span href="/keiba/SpLiveMovieSmart.do?opTrackCd=41" class="ico-live" style="display:block">LIVE</span></a></li><li><a class="m-link" href="/keiba/SpRaceList.do?joCd=42&kaisaiBi=20260722&gamenId=S101&gamenKoumokuId=sideMenuKeibaRaceList">笠松<span href="/keiba/SpLiveMovieSmart.do?opTrackCd=42" class="ico-live" style="display:block">LIVE</span></a></li><li><a class="m-link" href="/keiba/SpRaceList.do?joCd=43&kaisaiBi=20260722&gamenId=S101&gamenKoumokuId=sideMenuKeibaRaceList">名古屋<span href="/keiba/SpLiveMovieSmart.do?opTrackCd=43" class="ico-live" style="display:block">LIVE</span></a></li><li><a class="m-link" href="/keiba/SpRaceList.do?joCd=51&kaisaiBi=20260722&gamenId=S101&gamenKoumokuId=sideMenuKeibaRaceList">園田<span href="/keiba/SpLiveMovieSmart.do?opTrackCd=51" class="ico-live" style="display:block">LIVE</span></a></li><li><a class="m-link" href="/keiba/SpRaceList.do?joCd=55&kaisaiBi=20260722&gamenId=S101&gamenKoumokuId=sideMenuKeibaRaceList">高知<span href="/keiba/SpLiveMovieSmart.do?opTrackCd=55" class="ico-live" style="display:block">LIVE</span></a></li><li><a class="m-link" href="/keiba/SpRaceList.do?joCd=61&kaisaiBi=20260722&gamenId=S101&gamenKoumokuId=sideMenuKeibaRaceList">佐賀<span href="/keiba/SpLiveMovieSmart.do?opTrackCd=61" class="ico-live" style="display:block">LIVE</span></a></li></ul></section></div><div class="sales"><section><h3 class="pointer" store="nv-h-b" forceacd="">前売中(7/23)の発売場（競馬）<a class="arrow" href="javaScript:void(0);"><span class="ico-arrow close">&nbsp;</span></a></h3><ul class="v"><li><a class="m-link" href="/keiba/SpRaceList.do?joCd=55&kaisaiBi=20260723&gamenId=S101&gamenKoumokuId=sideMenuKeibaRaceList">高知</a></li></ul></section></div></div><section>
+<h3 class="pointer" store="nv-h-1">メニュー<a class="arrow" href="javaScript:void(0);"><span class="ico-arrow close">&nbsp;</span></a></h3>
+<ul>
+<li><a class="m-link" href="/keiba/MbSpotlightList.do">おすすめ注目レース</a></li>
+<li><a class="m-link" href="/keiba/yosou/top/?side_sp">予想情報</a></li>
+<li><a class="m-link" href="/keiba/SpKaisaiCalendar.do">開催日程</a></li>
+<li><a class="m-link" href="/keiba/SpLiveMovieSmart.do?side_sp">ライブ映像</a></li>
+<li><a class="m-link" href="/keiba/campaign/?side_sp">キャンペーン</a></li>
+<li><a class="m-link" href="/member/membership/">メンバーシッププログラム</a></li>
+<!--li><a class="m-link" href="https://sp.oddspark.com/keiba/SpHorseDb.do?side_sp">データベース</a></li-->
+<!--li><a class="m-link" href="/keiba/yosou/ai/SpProfile.do?side_sp">AI予想<span class="new-arr">初心者にオススメ!</span></a></li-->
+</ul>
+</section>
+<section>
+<h3 class="pointer" store="nv-h-2">マイページメニュー<a class="arrow" href="javaScript:void(0);"><span class="ico-arrow close">&nbsp;</span></a></h3>
+<ul>
+<li><a class="m-link" href="/user/my/Index.do">マイページ</a></li>
+<li><a class="m-link" href="/user/my/MyPfmTop.do">成績照会</a></li>
+<li><a class="m-link" href="/user/my/WebMsgList.do">メッセージ<span class="new-arr">新着: 7/16</span></a></li>
+<li><a class="m-link" href="/user/my/FavoTop.do">お気に入り</a></li>
+<li><a class="m-link" href="/user/my/MailInf.do">メール配信設定</a></li>
+<li><a class="m-link" href="/user/my/MemInf.do">会員情報確認・変更</a></li>
+</ul>
+</section>
+
+<a class="close" href="javaScript: void(0);"><span class="menu-close">&nbsp;</span>メニューを閉じる</a><a class="m-link c" href="/?SSO_PROCESS=LOGOUT">ログアウト</a><div class="foot"><p><small>&copy; Odds Park Corp.</small></p></div></div></div></sp><script>$(document).ready(function() {var navMenu = new NavMenu();});</script>
+<section class="nv-vp" style="display:none"><div class="sp-content" style="height: 400px; width: 310px;"><div class="popHS1 sell"><div class="mT10"><ul class="navG x2"><li><a href="javaScript: void(0);" class="to-games current">一覧</a></li><li><a href="javaScript: void(0);" class="to-timeline">タイムライン</a></li></ul></div><ul class="ico-game"><li><a href="/keiba/SpSalePlaceList.do?gamenId=&gamenKoumokuId=votePopupKeibaSale">競馬</a></li><li><a href="/keirin/SpSalePlaceList.do?gamenId=&gamenKoumokuId=votePopupKeirinSale">競輪</a></li><li><a href="/autorace/SpSalePlaceList.do?gamenId=&gamenKoumokuId=votePopupAutoraceSale">オート<br>レース</a></li><li><a href="/loto/SpSaleGoodsList.do?gamenId=&gamenKoumokuId=votePopupLotoSale">LOTO</a></li></ul><div id="listBody" style="height:420px; overflow:auto; padding:5px 10px;"><section class="nv-vp-games"><div class="gameList left"><h3><span class="ico-HS-L"></span></h3><ul><li><a class="" href="/keiba/SpRaceList.do?joCd=03&kaisaiBi=20260722&gamenId=&gamenKoumokuId=votePopupKeibaRaceList"><span>帯広<grade class=""></grade></span><span>3R<br>13:28</span></a></li><li><a class="" href="/keiba/SpRaceList.do?joCd=41&kaisaiBi=20260722&gamenId=&gamenKoumokuId=votePopupKeibaRaceList"><span>金沢<grade class=""></grade></span><span>3R<br>13:28</span></a></li><li><a class="" href="/keiba/SpRaceList.do?joCd=42&kaisaiBi=20260722&gamenId=&gamenKoumokuId=votePopupKeibaRaceList"><span>笠松<grade class=""></grade></span><span>9R<br>13:28</span></a></li><li><a class="" href="/keiba/SpRaceList.do?joCd=43&kaisaiBi=20260722&gamenId=&gamenKoumokuId=votePopupKeibaRaceList"><span>名古屋<grade class=""></grade></span><span>3R<br>13:28</span></a></li><li><a class="" href="/keiba/SpRaceList.do?joCd=51&kaisaiBi=20260722&gamenId=&gamenKoumokuId=votePopupKeibaRaceList"><span>園田<grade class=""></grade></span><span>9R<br>13:28</span></a></li><li><a class="" href="/keiba/SpRaceList.do?joCd=55&kaisaiBi=20260722&gamenId=&gamenKoumokuId=votePopupKeibaRaceList"><span>高知<grade class=""></grade></span><span>3R<br>13:28</span></a></li><li><a class="" href="/keiba/SpRaceList.do?joCd=61&kaisaiBi=20260722&gamenId=&gamenKoumokuId=votePopupKeibaRaceList"><span>佐賀<grade class=""></grade></span><span>3R<br>13:28</span></a></li><li><a class="advance" href="/keiba/SpRaceList.do?joCd=55&kaisaiBi=20260723&gamenId=&gamenKoumokuId=votePopupKeibaRaceList"><span>高知<grade class=""></grade></span><span>前売</span></a></li></ul><h3><span class="ico-AT-L"></span></h3><ul><li><a class="" href="/autorace/SpRaceList.do?joCd=02&kaisaiBi=20260722&gamenId=&gamenKoumokuId=votePopupAutoraceRaceList"><span>川口<grade class=""></grade></span><span>3R<br>13:28</span></a></li><li><a class="" href="/autorace/SpRaceList.do?joCd=04&kaisaiBi=20260722&gamenId=&gamenKoumokuId=votePopupAutoraceRaceList"><span>浜松<grade class=""></grade></span><span>3R<br>13:28</span></a></li><li><a class="" href="/autorace/SpRaceList.do?joCd=05&kaisaiBi=20260722&gamenId=&gamenKoumokuId=votePopupAutoraceRaceList"><span>飯塚<grade class=""></grade></span><span>3R<br>13:28</span></a></li><li><a class="" href="/autorace/SpRaceList.do?joCd=06&kaisaiBi=20260722&gamenId=&gamenKoumokuId=votePopupAutoraceRaceList"><span>山陽<grade class=""></grade></span><span>9R<br>13:28</span></a></li><li><a class="" href="/autorace/SpRaceList.do?joCd=03&kaisaiBi=20260722&gamenId=&gamenKoumokuId=votePopupAutoraceRaceList"><span>伊勢崎<grade class=""></grade></span><span>1R<br>17:58</span></a></li><li><a class="advance" href="/autorace/SpRaceList.do?joCd=03&kaisaiBi=20260723&gamenId=&gamenKoumokuId=votePopupAutoraceRaceList"><span>伊勢崎<grade class=""></grade></span><span>前売</span></a></li><li><a class="advance" href="/autorace/SpRaceList.do?joCd=04&kaisaiBi=20260723&gamenId=&gamenKoumokuId=votePopupAutoraceRaceList"><span>浜松<grade class=""></grade></span><span>前売</span></a></li></ul><h3><span class="ico-LT-L"></span></h3><ul><li><a href="/loto/SpRandomLotoVote.do?kaisaiBi=20260722&gameType=2&joID=84&betType=1&jyushouSu=7&gamenId=&gamenKoumokuId=votePopupLotoItemList" class="twolines" ><span>Dokanto!7</span><span>23:05</span></a></li><li><a href="/loto/SpRandomLotoVote.do?kaisaiBi=20260722&gameType=2&joID=114&betType=1&jyushouSu=7&gamenId=&gamenKoumokuId=votePopupLotoItemList" class="twolines" ><span>武雄ランダム<br>7重勝単勝式</span><span>23:05</span></a></li><li><a href="/loto/SpRandomLotoVote.do?kaisaiBi=20260722&gameType=2&joID=124&betType=1&jyushouSu=7&gamenId=&gamenKoumokuId=votePopupLotoItemList" class="twolines" ><span>佐世保ランダム<br>7重勝単勝式</span><span>23:05</span></a></li><li><a href="/loto/SpSelectLotoVote.do?kaisaiBi=20260722&gameType=2&joID=23&betType=1&jyushouSu=7&gamenId=&gamenKoumokuId=votePopupLotoItemList" class="twolines" ><span>青森セレクト<br>7重勝単勝式</span><span>23:05</span></a></li><li><a href="/loto/SpSelectLotoVote.do?kaisaiBi=20260722&gameType=2&joID=113&betType=1&jyushouSu=7&gamenId=&gamenKoumokuId=votePopupLotoItemList" class="twolines" ><span>武雄セレクト<br>7重勝単勝式</span><span>23:05</span></a></li><li><a href="/loto/SpSelectLotoVote.do?kaisaiBi=20260722&gameType=2&joID=123&betType=1&jyushouSu=7&gamenId=&gamenKoumokuId=votePopupLotoItemList" class="twolines" ><span>佐世保セレクト<br>7重勝単勝式</span><span>23:05</span></a></li><li><a href="/loto/SpRandomLotoVote.do?kaisaiBi=20260722&gameType=1&joID=94&betType=1&jyushouSu=7&gamenId=&gamenKoumokuId=votePopupLotoItemList" class="twolines" ><span>佐賀ランダム<br>7重勝単勝式</span><span>23:08</span></a></li><li><a href="/loto/SpSelectLotoVote.do?kaisaiBi=20260722&gameType=3&joID=24&betType=1&jyushouSu=7&gamenId=&gamenKoumokuId=votePopupLotoItemList" class="twolines" ><span>モトロト7</span><span>23:09</span></a></li><li><a href="/loto/SpSelectLotoVote.do?kaisaiBi=20260722&gameType=2&joID=22&betType=1&jyushouSu=5&gamenId=&gamenKoumokuId=votePopupLotoItemList" class="twolines" ><span>青森セレクト<br>5重勝単勝式</span><span>23:15</span></a></li><li><a href="/loto/SpSelectLotoVote.do?kaisaiBi=20260722&gameType=2&joID=112&betType=1&jyushouSu=5&gamenId=&gamenKoumokuId=votePopupLotoItemList" class="twolines" ><span>武雄セレクト<br>5重勝単勝式</span><span>23:15</span></a></li><li><a href="/loto/SpSelectLotoVote.do?kaisaiBi=20260722&gameType=2&joID=122&betType=1&jyushouSu=5&gamenId=&gamenKoumokuId=votePopupLotoItemList" class="twolines" ><span>佐世保セレクト<br>5重勝単勝式</span><span>23:15</span></a></li><li><a href="/loto/SpSelectLotoVote.do?kaisaiBi=20260722&gameType=1&joID=93&betType=1&jyushouSu=5&gamenId=&gamenKoumokuId=votePopupLotoItemList" class="twolines" ><span>佐賀セレクト<br>5重勝単勝式</span><span>23:18</span></a></li><li><a href="/loto/SpSelectLotoVote.do?kaisaiBi=20260722&gameType=3&joID=22&betType=1&jyushouSu=5&gamenId=&gamenKoumokuId=votePopupLotoItemList" class="twolines" ><span>モトロトmini</span><span>23:19</span></a></li><li><a href="/loto/SpRandomLotoVote.do?kaisaiBi=20260722&gameType=2&joID=85&betType=5&jyushouSu=4&gamenId=&gamenKoumokuId=votePopupLotoItemList" class="twolines" ><span>Dokanto!4two</span><span>23:20</span></a></li><li><a href="/loto/SpRandomLotoVote.do?kaisaiBi=20260722&gameType=3&joID=23&betType=6&jyushouSu=4&gamenId=&gamenKoumokuId=votePopupLotoItemList" class="twolines" ><span>モトロトBIG</span><span>23:24</span></a></li></ul></div><!-- Left DIV end --><div class="gameList right"><h3><span class="ico-KR-L"></span></h3><ul><li><a class="" href="/keirin/SpRaceList.do?joCd=61&kaisaiBi=20260722&gamenId=&gamenKoumokuId=votePopupKeirinRaceList"><span>玉野<grade class="f1"></grade></span><span>9R<br></span></a></li><li><a class="" href="/keirin/SpRaceList.do?joCd=11&kaisaiBi=20260722&gamenId=&gamenKoumokuId=votePopupKeirinRaceList"><span>函館<grade class="f1"></grade></span><span>3R<br>13:25</span></a></li><li><a class="" href="/keirin/SpRaceList.do?joCd=12&kaisaiBi=20260722&gamenId=&gamenKoumokuId=votePopupKeirinRaceList"><span>青森<grade class="f1"></grade></span><span>3R<br>13:25</span></a></li><li><a class="" href="/keirin/SpRaceList.do?joCd=21&kaisaiBi=20260722&gamenId=&gamenKoumokuId=votePopupKeirinRaceList"><span>弥彦<grade class="f1"></grade></span><span>3R<br>13:25</span></a></li><li><a class="" href="/keirin/SpRaceList.do?joCd=22&kaisaiBi=20260722&gamenId=&gamenKoumokuId=votePopupKeirinRaceList"><span>前橋<grade class="f1"></grade></span><span>9R<br>13:25</span></a></li><li><a class="" href="/keirin/SpRaceList.do?joCd=23&kaisaiBi=20260722&gamenId=&gamenKoumokuId=votePopupKeirinRaceList"><span>取手<grade class="f1"></grade></span><span>3R<br>13:25</span></a></li><li><a class="" href="/keirin/SpRaceList.do?joCd=46&kaisaiBi=20260722&gamenId=&gamenKoumokuId=votePopupKeirinRaceList"><span>富山<grade class="f1"></grade></span><span>9R<br>13:25</span></a></li><li><a class="" href="/keirin/SpRaceList.do?joCd=53&kaisaiBi=20260722&gamenId=&gamenKoumokuId=votePopupKeirinRaceList"><span>奈良<grade class="f1"></grade></span><span>3R<br>13:25</span></a></li><li><a class="" href="/keirin/SpRaceList.do?joCd=56&kaisaiBi=20260722&gamenId=&gamenKoumokuId=votePopupKeirinRaceList"><span>岸和田<grade class="f1"></grade></span><span>9R<br>13:25</span></a></li><li><a class="" href="/keirin/SpRaceList.do?joCd=85&kaisaiBi=20260722&gamenId=&gamenKoumokuId=votePopupKeirinRaceList"><span>佐世保<grade class="f1"></grade></span><span>3R<br>13:25</span></a></li><li><a class="" href="/keirin/SpRaceList.do?joCd=84&kaisaiBi=20260722&gamenId=&gamenKoumokuId=votePopupKeirinRaceList"><span>武雄<grade class="f2"></grade></span><span>3R<br>13:25</span></a></li><li><a class="advance" href="/keirin/SpRaceList.do?joCd=21&kaisaiBi=20260723&gamenId=&gamenKoumokuId=votePopupKeirinRaceList"><span>弥彦<grade class="f1"></grade></span><span>前売</span></a></li><li><a class="advance" href="/keirin/SpRaceList.do?joCd=23&kaisaiBi=20260723&gamenId=&gamenKoumokuId=votePopupKeirinRaceList"><span>取手<grade class="f1"></grade></span><span>前売</span></a></li></ul></div><!-- Right DIV end --><br clear="all" /></section><!-- games panel end --><section class="nv-vp-timeline" style="display:none"><div class="timeLine"><h3><span class="ico-KR-L"></span></h3><ul><li><a class="" href="/keirin/SpRaceList.do?joCd=61&kaisaiBi=20260722&gamenId=&gamenKoumokuId=timelineKeirinRaceList"><span>玉野<grade class="f1"></grade></span><span>9R<br></span></a></li></ul><h3><span class="ico-KR-L"></span></h3><ul><li><a class="" href="/keirin/SpRaceList.do?joCd=11&kaisaiBi=20260722&gamenId=&gamenKoumokuId=timelineKeirinRaceList"><span>函館<grade class="f1"></grade></span><span>3R<br>13:25</span></a></li></ul><h3><span class="ico-KR-L"></span></h3><ul><li><a class="" href="/keirin/SpRaceList.do?joCd=12&kaisaiBi=20260722&gamenId=&gamenKoumokuId=timelineKeirinRaceList"><span>青森<grade class="f1"></grade></span><span>3R<br>13:25</span></a></li></ul><h3><span class="ico-KR-L"></span></h3><ul><li><a class="" href="/keirin/SpRaceList.do?joCd=21&kaisaiBi=20260722&gamenId=&gamenKoumokuId=timelineKeirinRaceList"><span>弥彦<grade class="f1"></grade></span><span>3R<br>13:25</span></a></li></ul><h3><span class="ico-KR-L"></span></h3><ul><li><a class="" href="/keirin/SpRaceList.do?joCd=22&kaisaiBi=20260722&gamenId=&gamenKoumokuId=timelineKeirinRaceList"><span>前橋<grade class="f1"></grade></span><span>9R<br>13:25</span></a></li></ul><h3><span class="ico-KR-L"></span></h3><ul><li><a class="" href="/keirin/SpRaceList.do?joCd=23&kaisaiBi=20260722&gamenId=&gamenKoumokuId=timelineKeirinRaceList"><span>取手<grade class="f1"></grade></span><span>3R<br>13:25</span></a></li></ul><h3><span class="ico-KR-L"></span></h3><ul><li><a class="" href="/keirin/SpRaceList.do?joCd=46&kaisaiBi=20260722&gamenId=&gamenKoumokuId=timelineKeirinRaceList"><span>富山<grade class="f1"></grade></span><span>9R<br>13:25</span></a></li></ul><h3><span class="ico-KR-L"></span></h3><ul><li><a class="" href="/keirin/SpRaceList.do?joCd=53&kaisaiBi=20260722&gamenId=&gamenKoumokuId=timelineKeirinRaceList"><span>奈良<grade class="f1"></grade></span><span>3R<br>13:25</span></a></li></ul><h3><span class="ico-KR-L"></span></h3><ul><li><a class="" href="/keirin/SpRaceList.do?joCd=56&kaisaiBi=20260722&gamenId=&gamenKoumokuId=timelineKeirinRaceList"><span>岸和田<grade class="f1"></grade></span><span>9R<br>13:25</span></a></li></ul><h3><span class="ico-KR-L"></span></h3><ul><li><a class="" href="/keirin/SpRaceList.do?joCd=84&kaisaiBi=20260722&gamenId=&gamenKoumokuId=timelineKeirinRaceList"><span>武雄<grade class="f2"></grade></span><span>3R<br>13:25</span></a></li></ul><h3><span class="ico-KR-L"></span></h3><ul><li><a class="" href="/keirin/SpRaceList.do?joCd=85&kaisaiBi=20260722&gamenId=&gamenKoumokuId=timelineKeirinRaceList"><span>佐世保<grade class="f1"></grade></span><span>3R<br>13:25</span></a></li></ul><h3><span class="ico-HS-L"></span></h3><ul><li><a class="" href="/keiba/SpRaceList.do?joCd=03&kaisaiBi=20260722&gamenId=&gamenKoumokuId=timelineKeibaRaceList"><span>帯広<grade class=""></grade></span><span>3R<br>13:28</span></a></li></ul><h3><span class="ico-HS-L"></span></h3><ul><li><a class="" href="/keiba/SpRaceList.do?joCd=41&kaisaiBi=20260722&gamenId=&gamenKoumokuId=timelineKeibaRaceList"><span>金沢<grade class=""></grade></span><span>3R<br>13:28</span></a></li></ul><h3><span class="ico-HS-L"></span></h3><ul><li><a class="" href="/keiba/SpRaceList.do?joCd=42&kaisaiBi=20260722&gamenId=&gamenKoumokuId=timelineKeibaRaceList"><span>笠松<grade class=""></grade></span><span>9R<br>13:28</span></a></li></ul><h3><span class="ico-HS-L"></span></h3><ul><li><a class="" href="/keiba/SpRaceList.do?joCd=43&kaisaiBi=20260722&gamenId=&gamenKoumokuId=timelineKeibaRaceList"><span>名古屋<grade class=""></grade></span><span>3R<br>13:28</span></a></li></ul><h3><span class="ico-HS-L"></span></h3><ul><li><a class="" href="/keiba/SpRaceList.do?joCd=51&kaisaiBi=20260722&gamenId=&gamenKoumokuId=timelineKeibaRaceList"><span>園田<grade class=""></grade></span><span>9R<br>13:28</span></a></li></ul><h3><span class="ico-HS-L"></span></h3><ul><li><a class="" href="/keiba/SpRaceList.do?joCd=55&kaisaiBi=20260722&gamenId=&gamenKoumokuId=timelineKeibaRaceList"><span>高知<grade class=""></grade></span><span>3R<br>13:28</span></a></li></ul><h3><span class="ico-HS-L"></span></h3><ul><li><a class="" href="/keiba/SpRaceList.do?joCd=61&kaisaiBi=20260722&gamenId=&gamenKoumokuId=timelineKeibaRaceList"><span>佐賀<grade class=""></grade></span><span>3R<br>13:28</span></a></li></ul><h3><span class="ico-AT-L"></span></h3><ul><li><a class="" href="/autorace/SpRaceList.do?joCd=02&kaisaiBi=20260722&gamenId=&gamenKoumokuId=timelineAutoraceRaceList"><span>川口<grade class=""></grade></span><span>3R<br>13:28</span></a></li></ul><h3><span class="ico-AT-L"></span></h3><ul><li><a class="" href="/autorace/SpRaceList.do?joCd=04&kaisaiBi=20260722&gamenId=&gamenKoumokuId=timelineAutoraceRaceList"><span>浜松<grade class=""></grade></span><span>3R<br>13:28</span></a></li></ul><h3><span class="ico-AT-L"></span></h3><ul><li><a class="" href="/autorace/SpRaceList.do?joCd=05&kaisaiBi=20260722&gamenId=&gamenKoumokuId=timelineAutoraceRaceList"><span>飯塚<grade class=""></grade></span><span>3R<br>13:28</span></a></li></ul><h3><span class="ico-AT-L"></span></h3><ul><li><a class="" href="/autorace/SpRaceList.do?joCd=06&kaisaiBi=20260722&gamenId=&gamenKoumokuId=timelineAutoraceRaceList"><span>山陽<grade class=""></grade></span><span>9R<br>13:28</span></a></li></ul><h3><span class="ico-AT-L"></span></h3><ul><li><a class="" href="/autorace/SpRaceList.do?joCd=03&kaisaiBi=20260722&gamenId=&gamenKoumokuId=timelineAutoraceRaceList"><span>伊勢崎<grade class=""></grade></span><span>1R<br>17:58</span></a></li></ul><h3><span class="ico-LT-L"></span></h3><ul><li><a href="/loto/SpSelectLotoVote.do?kaisaiBi=20260722&gameType=2&joID=23&betType=1&jyushouSu=7&gamenId=&gamenKoumokuId=timelineItemList" class="twolines" ><span>青森セレクト<br>7重勝単勝式</span><span>23:05</span></a></li></ul><h3><span class="ico-LT-L"></span></h3><ul><li><a href="/loto/SpRandomLotoVote.do?kaisaiBi=20260722&gameType=2&joID=84&betType=1&jyushouSu=7&gamenId=&gamenKoumokuId=timelineItemList" class="twolines" ><span>Dokanto!7</span><span>23:05</span></a></li></ul><h3><span class="ico-LT-L"></span></h3><ul><li><a href="/loto/SpSelectLotoVote.do?kaisaiBi=20260722&gameType=2&joID=113&betType=1&jyushouSu=7&gamenId=&gamenKoumokuId=timelineItemList" class="twolines" ><span>武雄セレクト<br>7重勝単勝式</span><span>23:05</span></a></li></ul><h3><span class="ico-LT-L"></span></h3><ul><li><a href="/loto/SpRandomLotoVote.do?kaisaiBi=20260722&gameType=2&joID=114&betType=1&jyushouSu=7&gamenId=&gamenKoumokuId=timelineItemList" class="twolines" ><span>武雄ランダム<br>7重勝単勝式</span><span>23:05</span></a></li></ul><h3><span class="ico-LT-L"></span></h3><ul><li><a href="/loto/SpSelectLotoVote.do?kaisaiBi=20260722&gameType=2&joID=123&betType=1&jyushouSu=7&gamenId=&gamenKoumokuId=timelineItemList" class="twolines" ><span>佐世保セレクト<br>7重勝単勝式</span><span>23:05</span></a></li></ul><h3><span class="ico-LT-L"></span></h3><ul><li><a href="/loto/SpRandomLotoVote.do?kaisaiBi=20260722&gameType=2&joID=124&betType=1&jyushouSu=7&gamenId=&gamenKoumokuId=timelineItemList" class="twolines" ><span>佐世保ランダム<br>7重勝単勝式</span><span>23:05</span></a></li></ul><h3><span class="ico-LT-L"></span></h3><ul><li><a href="/loto/SpRandomLotoVote.do?kaisaiBi=20260722&gameType=1&joID=94&betType=1&jyushouSu=7&gamenId=&gamenKoumokuId=timelineItemList" class="twolines" ><span>佐賀ランダム<br>7重勝単勝式</span><span>23:08</span></a></li></ul><h3><span class="ico-LT-L"></span></h3><ul><li><a href="/loto/SpSelectLotoVote.do?kaisaiBi=20260722&gameType=3&joID=24&betType=1&jyushouSu=7&gamenId=&gamenKoumokuId=timelineItemList" class="twolines" ><span>モトロト7</span><span>23:09</span></a></li></ul><h3><span class="ico-LT-L"></span></h3><ul><li><a href="/loto/SpSelectLotoVote.do?kaisaiBi=20260722&gameType=2&joID=22&betType=1&jyushouSu=5&gamenId=&gamenKoumokuId=timelineItemList" class="twolines" ><span>青森セレクト<br>5重勝単勝式</span><span>23:15</span></a></li></ul><h3><span class="ico-LT-L"></span></h3><ul><li><a href="/loto/SpSelectLotoVote.do?kaisaiBi=20260722&gameType=2&joID=112&betType=1&jyushouSu=5&gamenId=&gamenKoumokuId=timelineItemList" class="twolines" ><span>武雄セレクト<br>5重勝単勝式</span><span>23:15</span></a></li></ul><h3><span class="ico-LT-L"></span></h3><ul><li><a href="/loto/SpSelectLotoVote.do?kaisaiBi=20260722&gameType=2&joID=122&betType=1&jyushouSu=5&gamenId=&gamenKoumokuId=timelineItemList" class="twolines" ><span>佐世保セレクト<br>5重勝単勝式</span><span>23:15</span></a></li></ul><h3><span class="ico-LT-L"></span></h3><ul><li><a href="/loto/SpSelectLotoVote.do?kaisaiBi=20260722&gameType=1&joID=93&betType=1&jyushouSu=5&gamenId=&gamenKoumokuId=timelineItemList" class="twolines" ><span>佐賀セレクト<br>5重勝単勝式</span><span>23:18</span></a></li></ul><h3><span class="ico-LT-L"></span></h3><ul><li><a href="/loto/SpSelectLotoVote.do?kaisaiBi=20260722&gameType=3&joID=22&betType=1&jyushouSu=5&gamenId=&gamenKoumokuId=timelineItemList" class="twolines" ><span>モトロトmini</span><span>23:19</span></a></li></ul><h3><span class="ico-LT-L"></span></h3><ul><li><a href="/loto/SpRandomLotoVote.do?kaisaiBi=20260722&gameType=2&joID=85&betType=5&jyushouSu=4&gamenId=&gamenKoumokuId=timelineItemList" class="twolines" ><span>Dokanto!4two</span><span>23:20</span></a></li></ul><h3><span class="ico-LT-L"></span></h3><ul><li><a href="/loto/SpRandomLotoVote.do?kaisaiBi=20260722&gameType=3&joID=23&betType=6&jyushouSu=4&gamenId=&gamenKoumokuId=timelineItemList" class="twolines" ><span>モトロトBIG</span><span>23:24</span></a></li></ul><h3><span class="ico-HS-L"></span></h3><ul><li><a class="advance" href="/keiba/SpRaceList.do?joCd=55&kaisaiBi=20260723&gamenId=&gamenKoumokuId=timelineKeibaRaceList"><span>高知<grade class=""></grade></span><span>前売</span></a></li></ul><h3><span class="ico-KR-L"></span></h3><ul><li><a class="advance" href="/keirin/SpRaceList.do?joCd=21&kaisaiBi=20260723&gamenId=&gamenKoumokuId=timelineKeirinRaceList"><span>弥彦<grade class="f1"></grade></span><span>前売</span></a></li></ul><h3><span class="ico-KR-L"></span></h3><ul><li><a class="advance" href="/keirin/SpRaceList.do?joCd=23&kaisaiBi=20260723&gamenId=&gamenKoumokuId=timelineKeirinRaceList"><span>取手<grade class="f1"></grade></span><span>前売</span></a></li></ul><h3><span class="ico-AT-L"></span></h3><ul><li><a class="advance" href="/autorace/SpRaceList.do?joCd=03&kaisaiBi=20260723&gamenId=&gamenKoumokuId=timelineAutoraceRaceList"><span>伊勢崎<grade class=""></grade></span><span>前売</span></a></li></ul><h3><span class="ico-AT-L"></span></h3><ul><li><a class="advance" href="/autorace/SpRaceList.do?joCd=04&kaisaiBi=20260723&gamenId=&gamenKoumokuId=timelineAutoraceRaceList"><span>浜松<grade class=""></grade></span><span>前売</span></a></li></ul></div><!-- timeLine DIV end --></section><!-- timeline panel end --></div><!-- scroll end --><a href="javaScript: void(0);" class="popClose"><span class="btn-close">&nbsp;</span>閉じる</a></div></div></section>
+
+	
+
+	
+    <script>
+      
+     window.addEventListener("ab.BridgeReady", function(){
+      
+      appboyBridge.logCustomEvent("app_all_vote_choice_screen");
+       
+      appboyBridge.requestImmediateDataFlush();
+     }, false);
+     </script>
+
+<script type="text/javascript"  src="/gJvA8W/h7/gS/UbwL/eEG6riFqpY/ku5wwNJYc3YOhh/Rx80Ag/aFAROx/4gLmcB"></script></body>
+</html>

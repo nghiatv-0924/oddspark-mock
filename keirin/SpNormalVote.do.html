@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-style-type" content="text/css" />
+    <meta http-equiv="content-script-type" content="text/javascript" />
+    <meta http-equiv="content-language" content="ja" />
+    <meta name="robots" content="noindex" />
+    
+    <!-- Gắn thẻ base để load tài nguyên từ trang thật -->
+    <base href="https://sp.st.oddspark.com/">
+    
+    <meta name="Keywords" content="地方競馬,競馬,馬券,投票,馬券購入,レース情報,予想,映像" />
+    <meta name="Description" content="オッズパーク競馬は地方競馬の馬券をパソコンや携帯電話などで購入出来る！予想情報やレース映像など地方競馬の情報が充実。" />
+    <meta name="disparea" content="qvga" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="-1" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="user-scalable=no, width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+    
+    <link rel="apple-touch-icon" href="icon.png?19700101085959">
+    <link rel="stylesheet" href="../sp_shared/css/import.css?19700101085959">
+    <link id="import_css" rel="stylesheet" href="sp_shared/css/import.css?19700101085959">
+    <link rel="apple-touch-icon-precomposed" href="/keiba/shared/images/apple-touch-icon-precomposed.png?19700101085959">
+    
+    <script src="/sp_shared/js/jquery-3.6.0.min.js?19700101085959"></script>
+    <script src="/sp_shared/js/jquery.utility.js?19700101085959"></script>
+    <script src="/sp_shared/js/js.cookie.min.js?19700101085959"></script>
+    <script src="/sp_shared/js/lib.js?19700101085959" charset="UTF-8"></script>
+    <script src="/sp_shared/js/jsExtension.js?19700101085959"></script>
+    <script src="/sp_shared/js/MSG.js?19700101085959" charset="UTF-8"></script>
+    <script src="/sp_shared/js/Common.js?19700101085959" charset="UTF-8"></script>
+    <script src="/sp_shared/js/Popup.js?19700101085959" charset="UTF-8"></script>
+    <script src="/sp_shared/js/NmlV.js?19700101085959" charset="UTF-8"></script>
+    <script src="/sp_shared/js/common/MsgPopup.js?19700101085959"></script>
+    <script src="/sp_shared/js/common/modalPopup.js?19700101085959"></script>
+    <script src="/sp_shared/js/common/amountPanel.js?19700101085959"></script>
+    <script src="/sp_shared/js/common/combinationList.js?19700101085959" charset="UTF-8"></script>
+    <script src="/sp_shared/js/common/tenkaiPanel.js?19700101085959"></script>
+    <script src="/sp_shared/js/common/cartAddConfirm.js?19700101085959"></script>
+    <script src="/sp_shared/js/common/moveCheck.js?19700101085959"></script>
+    <script src="/sp_shared/js/common/moveCheckWrapper.js?19700101085959"></script>
+    <script src="/keiba/s_sp_shared/js/HZengoWow.js?19700101085959"></script>
+    <script src="/keiba/s_sp_shared/js/HZengoYosouInfo.js?19700101085959"></script>
+    <script src="/keiba/sp_shared/js/HRHead.js?19700101085959" charset="UTF-8"></script>
+    <script src="/keiba/sp_shared/js/HRModSel.js?19700101085959"></script>
+    <script src="/keiba/sp_shared/js/HNmlV.js?19700101085959"></script>
+    <script type="text/javascript">
+        var BET_TYPE = { WIN: 1, BRACKET_QUINELLA: 3, BRACKET_EXACTA: 4, QUINELLA: 5, EXACTA: 6, WIDE: 7, TRIO: 8, TRIFECTA: 9 };
+        var BETTING_METHODOLOGY = { NORMAL: 1, WHEEL: 2, BOX: 3, FORMATION: 4 };
+        var WHEEL_TYPE = { FIRST_CENTER_FIXED: 1, SECOND_CENTER_FIXED: 2, FIRST_PLACED_FIXED: 3, SECOND_PLACED_FIXED: 4, THIRD_PLACED_FIXED: 5, FIRSTSECOND_PLACED_FIXED: 6, FIRSTTHIRD_PLACED_FIXED: 7, SECONDTHIRD_PLACED_FIXED: 8 };
+    </script>
+    <title>投票｜オッズパーク競馬</title>
+
+    <!-- CSS Mới cho UI Mockup -->
+    <style>
+        .new-ui-container * { box-sizing: border-box; font-family: sans-serif; }
+        
+        /* --- BẢNG CHỌN NGỰA --- */
+        .bet-list { background: #fff; border-top: 1px solid #e0e0e0; margin-bottom: 80px; }
+        .bet-row { display: flex; align-items: stretch; border-bottom: 1px solid #e0e0e0; min-height: 60px; }
+        
+        .waku { width: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; }
+        .waku.bg-white { background: #f9f9f9; color: #333; border-right: 1px solid #e0e0e0; }
+        .waku.bg-black { background: #333; color: #fff; }
+        .waku.bg-red { background: #e53935; color: #fff; }
+        .waku.bg-blue { background: #1e88e5; color: #fff; }
+        .waku.bg-yellow { background: #fdd835; color: #333; }
+        .waku.bg-green { background: #43a047; color: #fff; }
+        .waku.bg-orange { background: #fb8c00; color: #fff; }
+        .waku.bg-pink { background: #e91e63; color: #fff; }
+
+        .horse-num { width: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 16px; background: #fff; border-right: 1px solid #eee; }
+        .horse-info { flex: 1; padding: 10px 8px; display: flex; flex-direction: column; justify-content: center; background: #fff; }
+        .horse-name { font-weight: bold; font-size: 14px; margin-bottom: 4px; color: #333; }
+        .jockey-name { font-size: 11px; color: #666; }
+        
+        .odds-col { width: 50px; display: flex; align-items: center; justify-content: flex-end; padding-right: 12px; font-weight: bold; font-size: 14px; color: #d32f2f; background: #fff; }
+        
+        .check-group { display: flex; width: 130px; background: #f5f5f5; border-left: 1px solid #e0e0e0; }
+        .check-col { flex: 1; display: flex; align-items: center; justify-content: center; border-right: 1px solid #e0e0e0; }
+        .check-col:last-child { border-right: none; }
+        
+        .circle-check { width: 28px; height: 28px; border-radius: 50%; border: 1px solid #ccc; background: #fff; display: flex; align-items: center; justify-content: center; color: transparent; font-size: 14px; }
+        .circle-check.active { background: #4caf50; border-color: #4caf50; color: #fff; }
+        .circle-check.disabled { background: #e0e0e0; border: none; color: #999; }
+        .circle-check.disabled::after { content: "−"; }
+        .circle-check.active::after { content: "✔"; }
+
+        /* --- THANH FOOTER CỐ ĐỊNH --- */
+        .sticky-footer {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: #fff;
+            border-top: 1px solid #e0e0e0;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+        .footer-info { display: flex; flex-direction: column; }
+        .footer-count { font-size: 14px; font-weight: bold; color: #333; }
+        .footer-price { font-size: 12px; color: #666; margin-top: 2px; }
+        
+        .footer-actions { display: flex; gap: 8px; }
+        .btn-save { padding: 12px 16px; border: 1px solid #f57c00; background: #fff; color: #f57c00; font-weight: bold; border-radius: 4px; font-size: 14px; }
+        .btn-submit { padding: 12px 24px; border: none; background: #f57c00; color: #fff; font-weight: bold; border-radius: 4px; font-size: 14px; cursor: pointer; }
+        
+        /* Ẩn các khối không cần thiết của bản cũ */
+        #enter-amount, #userInfo, #bet-table { display: none !important; }
+    </style>
+</head>
+
+<body class='sp-content'>
+    <div id="wrap">
+        <input type="hidden" id="kaisaiBi" name="kaisaiBi" value="20260722" />
+        <input type="hidden" id="joCode" name="joCode" value="42" />
+        <input type="hidden" id="raceNo" name="raceNo" value="12" />
+        <input type="hidden" id="betType" name="betType" value="9" />
+        <input type="hidden" id="tohyoHoshiki" name="tohyoHoshiki" value="1" />
+        <input type="hidden" id="sortType" name="sortType" value="5" />
+        
+        <div class="sp-content">
+            <header class="nav-bar-header">
+                <h1 class="site-id"><a href="/">投票｜オッズパーク競馬</a></h1>
+                <a class="menu" href="javaScript: void(0)">menu</a>
+            </header>
+            <nav>
+                <ul class="global-nav">
+                    <li class="global-nav-keiba"><a href="/keiba/"><span>競馬</span></a></li>
+                    <li class="global-nav-keirin"><a href="/keirin/"><span>競輪</span></a></li>
+                    <li class="global-nav-auto"><a href="/autorace/"><span>オート</span></a></li>
+                    <li class="global-nav-loto"><a href="/loto/"><span>ロト</span></a></li>
+                    <li class="global-nav-non-cart"><a class="a-cart" href="/keiba/SpCmVoteConfirm.do?returnURL=" id="direct"><span>カート</span></a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div id="HRHead" style="display:none;"></div>
+        <div id="race-header" class="wrap">
+            <nav>
+                <ul class="race-select2">
+                    <li><a class="btn-reg HRHead_JoSel">笠松<span class="ico-pop-up">&nbsp;</span></a></li>
+                    <li data-jo="42"><a class="btn-reg HRHead_RaceSel">12R<span class="ico-pop-up">&nbsp;</span></a></li>
+                    <li><a class="btn-reg HRHead_ModSel ">通常投票<span class="ico-pop-up">&nbsp;</span></a></li>
+                    <li><a class="btn-reg btn-prev HRHead_toPrev">11R</a></li>
+                    <li><a class="btn-reg btn-next disabled">&nbsp;</a></li>
+                </ul>
+            </nav>
+            <div class="race-info">
+                <ul class="race-info-header">
+                    <li class="HRHead_toYoso"><span class="ico-pop-up">&nbsp;</span><a>予想情報</a></li>
+                </ul>
+                <ul class="state"><li>発売中</li><li>14:58締切</li></ul>
+                <p class="date">2026年7月22日&nbsp;<span class="raceGrade "></span></p>
+                <p class="name ryaku-l2">ＳＰＡＴ４プレミアムポイント賞競走Ａ２以下選抜特別</p>
+                <ul class="other"><li>ダ1800m</li><li>15:00発走</li></ul>
+            </div>
+        </div>
+
+        <section id="view-type" class="view-type">
+            <section>
+                <a id="betTypeSelect" class="btn-reg bet-type"><span class="title">&nbsp;</span>3連単<span class="ico-pop-up">&nbsp;</span></a>
+                <a id="tohyoHoshikiSelect" class="btn-reg bet-type"><span class="title2">&nbsp;</span>通常<span class="ico-pop-up">&nbsp;</span></a>
+            </section>
+            <section>
+                <p class="reload"><a id="oddsGetTime" class="txt-reload">13:12現在</a></p>
+            </section>
+        </section>
+
+        <!-- UI MỚI BẮT ĐẦU TỪ ĐÂY (Thay thế bảng <table id="bet-table">) -->
+        <div class="new-ui-container">
+            <!-- KHU VỰC DANH SÁCH NGỰA -->
+            <div class="bet-list">
+                <!-- Hàng 1 -->
+                <div class="bet-row">
+                    <div class="waku bg-white">1</div>
+                    <div class="horse-num">1</div>
+                    <div class="horse-info">
+                        <div class="horse-name">アンジュディアブル</div>
+                        <div class="jockey-name">橋本直哉 (53.0)</div>
+                    </div>
+                    <div class="odds-col">2.9</div>
+                    <div class="check-group">
+                        <div class="check-col"><div class="circle-check active"></div></div>
+                        <div class="check-col"><div class="circle-check disabled"></div></div>
+                        <div class="check-col"><div class="circle-check disabled"></div></div>
+                    </div>
+                </div>
+
+                <!-- Hàng 2 -->
+                <div class="bet-row">
+                    <div class="waku bg-black">2</div>
+                    <div class="horse-num">2</div>
+                    <div class="horse-info">
+                        <div class="horse-name">アンジュループ</div>
+                        <div class="jockey-name">濱田達也 (53.0)</div>
+                    </div>
+                    <div class="odds-col">52.9</div>
+                    <div class="check-group">
+                        <div class="check-col"><div class="circle-check disabled"></div></div>
+                        <div class="check-col"><div class="circle-check active"></div></div>
+                        <div class="check-col"><div class="circle-check disabled"></div></div>
+                    </div>
+                </div>
+
+                <!-- Hàng 3 -->
+                <div class="bet-row">
+                    <div class="waku bg-red">3</div>
+                    <div class="horse-num">3</div>
+                    <div class="horse-info">
+                        <div class="horse-name">アンジュレーヴ</div>
+                        <div class="jockey-name">林幻 (53.0)</div>
+                    </div>
+                    <div class="odds-col">144.2</div>
+                    <div class="check-group">
+                        <div class="check-col"><div class="circle-check disabled"></div></div>
+                        <div class="check-col"><div class="circle-check disabled"></div></div>
+                        <div class="check-col"><div class="circle-check active"></div></div>
+                    </div>
+                </div>
+
+                <!-- Hàng 4 -->
+                <div class="bet-row">
+                    <div class="waku bg-blue">4</div>
+                    <div class="horse-num">4</div>
+                    <div class="horse-info">
+                        <div class="horse-name">アンダーザシー</div>
+                        <div class="jockey-name">早田功駿 (53.0)</div>
+                    </div>
+                    <div class="odds-col">2.9</div>
+                    <div class="check-group">
+                        <div class="check-col"><div class="circle-check"></div></div>
+                        <div class="check-col"><div class="circle-check"></div></div>
+                        <div class="check-col"><div class="circle-check"></div></div>
+                    </div>
+                </div>
+                
+                <!-- Hàng 5 -->
+                <div class="bet-row">
+                    <div class="waku bg-yellow">5</div>
+                    <div class="horse-num">5</div>
+                    <div class="horse-info">
+                        <div class="horse-name">アンティーマリー</div>
+                        <div class="jockey-name">早田秀二 (53.0)</div>
+                    </div>
+                    <div class="odds-col">144.2</div>
+                    <div class="check-group">
+                        <div class="check-col"><div class="circle-check"></div></div>
+                        <div class="check-col"><div class="circle-check"></div></div>
+                        <div class="check-col"><div class="circle-check"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- THANH FOOTER CỐ ĐỊNH -->
+            <div class="sticky-footer">
+                <div class="footer-info">
+                    <div class="footer-count">999通り 選択中</div>
+                    <div class="footer-price">9999.9～9999.9</div>
+                </div>
+                <div class="footer-actions">
+                    <button class="btn-save">買い目を保存</button>
+                    <button class="btn-submit">金額入力へ</button>
+                </div>
+            </div>
+        </div>
+        <!-- UI MỚI KẾT THÚC -->
+
+        <!-- Khu vực footer cũ giữ nguyên -->
+        <div class="sp-content" style="padding-bottom: 80px;">
+            <footer>
+                <div><a class="page-top" href="javaScript:void(0);">ページ先頭へ</a></div>
+                <ul class="mem">
+                    <li><a href="/member/membership">メンバーシップ プログラム</a></li>
+                </ul>
+                <nav class="op-footer op-footer--keiba" aria-label="フッター">
+                    <ul class="footer-link">
+                        <li><a href="/service/attention.html?foaf_sp">注意事項</a></li>
+                        <li><a href="/service/company.html?foaf_sp">会社案内</a></li>
+                    </ul>
+                    <div class="op-footer-logo"><a href="/?foaf_sp"><img src="/service/opsp_shared/images/logo-odds-park.png?20260319092843" width="173" height="37" alt="Odds Park"></a></div>
+                </nav>
+                <ul class="display-switch">
+                    <li>表示</li>
+                    <li><a style='pointer-events: auto !important;' href="javaScript: void(0);" class="to-mode-sp">スマートフォン</a></li>
+                    <li><a href="https://www.st.oddspark.com/keiba/" class="to-mode-pc">PC</a></li>
+                </ul>
+                <div><p><small class="copyright">&copy;Odds Park Corp.</small></p></div>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

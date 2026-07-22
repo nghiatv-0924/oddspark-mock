@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bản Mock UI - Oddspark</title>
+    <style>
+        /* CSS cho màn hình loading chờ tải trang */
+        body { 
+            font-family: Arial, sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            background: #f8f9fa; 
+            margin: 0; 
+        }
+        #loader-container {
+            text-align: center; 
+        }
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border-left-color: #09f;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px auto;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .text-loading { font-size: 1.1rem; color: #333; }
+        .text-error { color: red; font-weight: bold; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div id="loader-container">
+        <div class="spinner"></div>
+        <div class="text-loading" id="status-text">Đang kết nối qua Proxy và tải giao diện... ⏳</div>
+    </div>
+
+    <script>
+        // 1. Cấu hình URL Proxy (Lấy từ Cloudflare Worker của bạn)
+// 1. Cấu hình URL Proxy (Giữ nguyên của bạn)
+const endpoint = "SpNormalVote.do?kaisaiBi=20260722&raceDy=20260722&joCode=03&joCd=03&opTrackCd=03&raceNo=12&raceNb=12&betType=9&tohyoHoshiki=1&gamenId=S512&gamenKoumokuId=votePopupKeiba";
+const proxyUrl = `https://dry-morning-8fa9.tran-van-nghia.workers.dev/keiba/${endpoint}`;
+const originalBaseUrl = 'https://sp.st.oddspark.com/keiba/'; 
+
+// Log Cookie hiện tại ra màn hình chờ
+const myCookies = document.cookie;
+document.getElementById('status-text').innerHTML += `<br/><br/><b>Cookie hiện tại:</b> <span style="color: blue; word-break: break-all;">${myCookies || 'Không có cookie nào'}</span><br/><br/>`;
+
+// 2. Fetch HTML qua Proxy
+fetch(proxyUrl, {
+    method: 'GET',
+    headers: {
+        'X-Forward-Cookie': myCookies // Gửi Cookie đã lấy được qua custom header
+    },
+    cache: 'no-store'
+})
+.then(response => {
+    if (response.ok) return response.text();
+    throw new Error(`Lỗi từ Proxy Oddspark. Status: ${response.status}`);
+})
+.then(htmlString => {
+    // 3. Chuyển chuỗi HTML thành DOM Object
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlString, 'text/html');
+    const base = new URL(originalBaseUrl);
+
+    // 4. Sửa toàn bộ đường dẫn tương đối (Relative Path) thành tuyệt đối (Absolute Path)
+    doc.querySelectorAll('link[href]').forEach(el => {
+        const href = el.getAttribute('href');
+        if (href && !href.startsWith('http') && !href.startsWith('data:')) {
+            el.href = new URL(href, base).href;
+        }
+    });
+
+    doc.querySelectorAll('img[src], script[src]').forEach(el => {
+        const src = el.getAttribute('src');
+        if (src && !src.startsWith('http') && !src.startsWith('data:')) {
+            el.src = new URL(src, base).href;
+        }
+    });
+
+    doc.querySelectorAll('a[href]').forEach(el => {
+        const href = el.getAttribute('href');
+        if (href && !href.startsWith('http') && !href.startsWith('javascript:')) {
+            el.href = new URL(href, base).href;
+        }
+    });
+
+    // 5. HIỂN THỊ FULL HTML TRANG GỐC
+    // Bỏ hẳn phần khung body/loader hiện tại, thay bằng toàn bộ HTML thật
+    document.open();
+    document.write(doc.documentElement.outerHTML);
+    document.close();
+
+    // 6. Kích hoạt lại toàn bộ file Script của trang thật
+    // (document.write có thể làm Script bị "trơ", cần append lại để browser chạy lại JS gốc của Oddspark)
+    setTimeout(() => {
+        const scripts = Array.from(document.querySelectorAll('script'));
+        scripts.forEach(oldScript => {
+            const newScript = document.createElement('script');
+            Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+            
+            if (oldScript.innerHTML) {
+                newScript.innerHTML = oldScript.innerHTML;
+            }
+            
+            oldScript.parentNode.replaceChild(newScript, oldScript);
+        });
+    }, 100);
+})
+.catch(error => {
+    console.error('Lỗi Fetch Proxy:', error);
+    const statusText = document.getElementById('status-text');
+    if (statusText) {
+        // In lỗi chi tiết ra màn hình
+        statusText.innerHTML += `<br/><br/><b style="color:red">❌ Đã xảy ra lỗi:</b> ${error.message}<br/><pre style="text-align:left; background:#eee; padding:10px;">${error.stack}</pre>`;
+    }
+    const spinner = document.querySelector('.spinner');
+    if (spinner) spinner.style.display = 'none';
+});
+    </script>
+</body>
+</html>
