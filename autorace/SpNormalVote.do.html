@@ -1,11 +1,11 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="ja">
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport"
               content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
         <meta name="format-detection" content="telephone=no"/>
-        <title>通常投票｜オッズパーク競馬</title>
+        <title>通常投票｜オッズパークオートレース</title>
         <style>
             /* ============================================================
                Design tokens — mirror the native design system.
@@ -432,20 +432,22 @@
     </div>
     
     <script>
+        // Autorace has no 枠連/枠単 equivalent (no 枠/frame grouping at all —
+        // see BET_TYPE on the legacy page: WIN/QUINELLA/EXACTA/WIDE/TRIO/
+        // TRIFECTA only, unlike keiba's BETTING_METHODOLOGY which also
+        // defines a 枠 pair). So betType codes 3/4 simply don't exist here.
         var BET_CONFIG = {
           // 単勝・複勝 has no 通常/流し/ボックス/フォーメーション method and no
-          // combination engine (each is an independent single-horse pick) — cols/
+          // combination engine (each is an independent single-car pick) — cols/
           // waku are unused, renderTable() routes bt===1 to renderTanpukuTable().
           1: { label: '単勝・複勝' },
-          3: { label: '枠連', cols: ['1頭目', '2頭目'], waku: true },
-          4: { label: '枠単', cols: ['1着', '2着'], waku: true },
-          5: { label: '馬連', cols: ['1頭目', '2頭目'] },
-          6: { label: '馬単', cols: ['1着', '2着'] },
-          7: { label: 'ワイド', cols: ['1頭目', '2頭目'] },
-          8: { label: '3連複', cols: ['1頭目', '2頭目', '3頭目'] },
+          5: { label: '2車複', cols: ['1人目', '2人目'] },
+          6: { label: '2車単', cols: ['1着', '2着'] },
+          7: { label: 'ワイド', cols: ['1人目', '2人目'] },
+          8: { label: '3連複', cols: ['1人目', '2人目', '3人目'] },
           9: { label: '3連単', cols: ['1着', '2着', '3着'] }
         };
-        var TAB_ORDER = [1, 3, 4, 5, 6, 7, 8, 9];
+        var TAB_ORDER = [1, 5, 6, 7, 8, 9];
         var CHECK_SVG = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12.5L9.5 18L20 6.5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
         var REFRESH_SVG = '<svg viewBox="0 0 24 24" fill="none" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M12 4V1L8 5L12 9V6C15.31 6 18 8.69 18 12C18 13.01 17.75 13.97 17.3 14.8L18.76 16.26C19.54 15.03 20 13.57 20 12C20 7.58 16.42 4 12 4ZM12 18C8.69 18 6 15.31 6 12C6 10.99 6.25 10.03 6.7 9.2L5.24 7.74C4.46 8.97 4 10.43 4 12C4 16.42 7.58 20 12 20V23L16 19L12 15V18Z" fill="currentColor"/></svg>';
     
@@ -475,7 +477,7 @@
         function isMulti() { return METHOD !== 1; }
         function isBox() { return METHOD === 3; }
         function isWheel() { return METHOD === 2; }
-        function hasMulti(bt) { return bt === 4 || bt === 6 || bt === 9; }
+        function hasMulti(bt) { return bt === 6 || bt === 9; }
     
         function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
     
@@ -626,9 +628,10 @@
             var selected = !EXCLUDED_COMBOS[key];
             html += '<div class="odds-item"><div class="odds-combi">';
             comb.forEach(function(id, idx) {
-              // waku bets (枠連/枠単) key combinations by 枠 ('w'+waku); other bets
-              // key by 馬 ('c'+car) but still need the OWNING 枠's color, since
-              // .odds-chip only defines w1-w9 (frame colors), not per-horse ones.
+              // Autorace has no waku-based bet type (see BET_CONFIG), so combo
+              // ids are always 'c'+car here — this isWakuId branch is dead for
+              // this category but kept so this file stays a close mirror of
+              // keiba's version it was adapted from.
               var isWakuId = id.charAt(0) === 'w';
               var num = id.substring(1);
               var p = isWakuId
@@ -793,7 +796,11 @@
           // Same-origin as this page (the WebView's own baseUrl, set on the Dart
           // side via controller.loadData's baseUrl — currently api.sp.oddspark.com,
           // the same host _legacyVoteUrl() scrapes) — avoids a cross-origin fetch.
-          return window.location.origin + '/keiba/ajax/SpZengoYosouInfo.do' +
+          // TODO(autorace-mock): endpoint name inferred from the legacy page's
+          // own script include (AZensanYosouInfo.js, mirroring keiba's
+          // HZengoYosouInfo.js -> SpZengoYosouInfo.do naming) — NOT yet
+          // confirmed against a real network capture like keiba's was.
+          return window.location.origin + '/autorace/ajax/SpZensanYosouInfo.do' +
             '?kaisaiBi=' + encodeURIComponent(CTX_KAISAIBI) +
             '&joCd=' + encodeURIComponent(CTX_JOCODE) +
             '&raceNo=' + encodeURIComponent(CTX_RACENO);
@@ -897,20 +904,19 @@
         ];
         var CURRENT_MODE = 'normal';
     
-        // オッズ投票 has no bet-type-agnostic screenId in the deeplink registry
-        // (each entry is tied to a specific 賭式) — route to the current BET_TYPE's
-        // オッズ表 entry (mode=1), matching deeplink_keiba.dart's CA109-4x/5x/6x/7x
-        // group (bet=3 枠連/4 枠単/5 馬連/6 馬単/7 ワイド/8 3連複/9 3連単, mode=1).
-        var ODDS_SCREEN_BY_BET = {
-          3: 'CA109-40', 4: 'CA109-45', 5: 'CA109-50', 6: 'CA109-55',
-          7: 'CA109-60', 8: 'CA109-65', 9: 'CA109-70'
-        };
-    
+        // TODO(autorace-mock): deeplink_autorace.dart's CA507-* (odds tab)
+        // entries use a 'bet' param whose value doesn't line up with either
+        // BET_TYPE or AutoraceBetTypes — its own comments still say 馬連/馬単/
+        // 枠連/枠単 (autorace has no such bets; only 単勝/複勝/2連複/2連単/
+        // ワイド/3連複/3連単 exist, per lib/model/enum/autorace/
+        // autorace_bet_types.dart), and no entry at all exists for 3連複/
+        // 3連単. Rather than guess and risk routing to the wrong odds screen,
+        // 'odds' intentionally has no mapping below — fill in once the real
+        // CA507 bet-type mapping for autorace is confirmed.
         function screenIdForMode(code) {
-          if (code === 'multitype') return 'CA109-38'; // 賭式まとめ投票
-          if (code === 'multirace') return 'CA109-81'; // レースまとめ投票
-          if (code === 'odds') return ODDS_SCREEN_BY_BET[BET_TYPE] || 'CA109-70';
-          return null; // normal — already the current tab, no navigation needed
+          if (code === 'multitype') return 'CA509-29'; // 賭式まとめ投票
+          if (code === 'multirace') return 'CA509-62'; // レースまとめ投票
+          return null; // normal / odds — no navigation (see TODO above for odds)
         }
     
         function buildModeMenu() {
@@ -984,13 +990,13 @@
           refreshOddsList();
         };
     
-        // 賭式/投票方法/流しサブタイプは同じレースの出走馬名簿 (PLAYERS) に依存しない
+        // 賭式/投票方法/流しサブタイプは同じレースの出走選手名簿 (PLAYERS) に依存しない
         // ため（列構成だけが変わる — BET_CONFIG/wheelCols が既にクライアント側で
         // 吸収している）、切替のたびに legacy ページを再取得する必要はない。3つとも
         // ネイティブ round-trip なしで即座に再描画する（selectBetType/onMethodTap/
         // selectWheelType）。
         function defaultWheelTypeFor(bt) {
-          return (bt === 9 || bt === 6 || bt === 4) ? 3 : 1;
+          return (bt === 9 || bt === 6) ? 3 : 1;
         }
     
         // フルページ再読み込みが無くなった分、以前は「新しいページ＝まっさらな
@@ -1090,19 +1096,13 @@
         function wheelTypesFor(bt) {
           if (bt === 9) return [{c:3,l:'1着\n流し'},{c:4,l:'2着\n流し'},{c:5,l:'3着\n流し'},{c:6,l:'1・2着\n流し'},{c:7,l:'1・3着\n流し'},{c:8,l:'2・3着\n流し'}];
           if (bt === 8) return [{c:1,l:'1軸\n流し'},{c:2,l:'2軸\n流し'}];
-          if (bt === 6 || bt === 4) return [{c:3,l:'1着\n流し'},{c:4,l:'2着\n流し'}];
+          if (bt === 6) return [{c:3,l:'1着\n流し'},{c:4,l:'2着\n流し'}];
           return [{c:1,l:'流し'}];
         }
     
-        // 枠 grouping helpers — PLAYERS is sorted by car with .waku pre-assigned by
-        // the scraper (duplicatable 枠 span 2 cars). Mirrors how every native view
-        // (Normal/Formation/Wheel/Box) groups the 枠 column via a single tall cell.
-        function firstOfWaku(i) { return i === 0 || PLAYERS[i - 1].waku !== PLAYERS[i].waku; }
-        function wakuSpan(i) {
-          var s = 0;
-          for (var j = i; j < PLAYERS.length && PLAYERS[j].waku === PLAYERS[i].waku; j++) s++;
-          return s;
-        }
+        // Autorace has no 枠/frame grouping — unlike keiba (where this file's
+        // rendering logic originated), there is no firstOfWaku/wakuSpan here:
+        // every car is rendered as its own single row.
     
         function renderTable() {
           if (BET_TYPE === 1) { renderTanpukuTable(); return; }
@@ -1111,43 +1111,28 @@
           var wCols = w ? wheelCols(BET_TYPE, WHEEL_TYPE) : null;
           var cols = (isBox() ? ['ボックス'] : (w ? wCols.map(function(c){return c.label;}) : cfg.cols));
     
-          var html = '<table class="bet-table"><thead><tr><th>枠\n番</th><th>馬\n番</th><th class="col-name">馬名</th>';
+          var html = '<table class="bet-table"><thead><tr><th>車\n番</th><th class="col-name">選手名</th>';
           cols.forEach(function(c){ html += '<th class="col-bet">' + c + '</th>'; });
           html += '</tr></thead><tbody>';
-    
+
           for (var i = 0; i < PLAYERS.length; i++) {
             var p = PLAYERS[i];
             html += '<tr>';
-            // 枠番: waku bets (枠連/枠単) group all checkbox columns by 枠 too —
-            // matches native niwakufuku/niwakutan views (checkbox keyed by wakuNo,
-            // not playerNo). Otherwise 枠 is purely informational (still grouped).
-            if (firstOfWaku(i)) {
-              html += '<td rowspan="' + wakuSpan(i) + '">' + p.waku + '</td>';
-            }
-            // Color is keyed by 枠 (waku, max 8), never by 馬番 (car/umaban, up to
-            // 18) — .car only defines w1-w9, so keying by car left cars 10+ with
-            // no background (invisible white-on-white text) and mis-colored
-            // duplicated-waku horses (e.g. car 6 sharing waku 5 with car 5 showed
-            // its own w6 color instead of 5's).
-            html += '<td class="car w' + p.waku + '">' + p.car + '</td>';
+            // Autorace has no 枠/frame grouping (no waku-based bet type exists —
+            // see BET_CONFIG) — color the car-number cell directly by car (max
+            // 8 cars fits w1-w8 exactly), no rowspan grouping needed.
+            html += '<td class="car w' + p.car + '">' + p.car + '</td>';
             html += '<td class="name-cell ripple"><div class="pname">' + esc(p.name) + '</div><div class="pinfo">' + esc(p.info) + '</div></td>';
-    
+
             for (var c = 0; c < cols.length; c++) {
               var kind = w ? wCols[c].kind : '';
               // Shape: wheel — 軸(round)/相手(square) per column kind; formation &
               // box — always square (getCheckBox); normal — always round
               // (getCheckBoxRound). Mirrors the native provider's two icon helpers.
               var shape = (w ? (kind === 'aite') : isMulti()) ? ' square' : '';
-              var id = cfg.waku ? ('w' + p.waku) : ('c' + p.car);
               var cell = '<span class="checkbox ripple' + shape + '" data-col="' + (c + 1) +
-                '" data-id="' + id + '" data-kind="' + kind + '">' + CHECK_SVG + '</span>';
-              if (cfg.waku) {
-                if (firstOfWaku(i)) {
-                  html += '<td rowspan="' + wakuSpan(i) + '">' + cell + '</td>';
-                }
-              } else {
-                html += '<td>' + cell + '</td>';
-              }
+                '" data-id="c' + p.car + '" data-kind="' + kind + '">' + CHECK_SVG + '</span>';
+              html += '<td>' + cell + '</td>';
             }
             html += '</tr>';
           }
@@ -1183,18 +1168,15 @@
     
         function renderTanpukuTable() {
           var html = '<table class="bet-table"><thead><tr>' +
-            '<th>枠\n番</th><th>馬\n番</th><th class="col-name">馬名</th>' +
+            '<th>車\n番</th><th class="col-name">選手名</th>' +
             '<th class="col-bet">単勝\nオッズ</th><th class="col-bet">単勝</th>' +
             '<th class="col-bet">複勝\nオッズ</th><th class="col-bet">複勝</th>' +
             '</tr></thead><tbody>';
-    
+
           for (var i = 0; i < PLAYERS.length; i++) {
             var p = PLAYERS[i];
             html += '<tr>';
-            if (firstOfWaku(i)) {
-              html += '<td rowspan="' + wakuSpan(i) + '">' + p.waku + '</td>';
-            }
-            html += '<td class="car w' + p.waku + '">' + p.car + '</td>';
+            html += '<td class="car w' + p.car + '">' + p.car + '</td>';
             html += '<td class="name-cell ripple"><div class="pname">' + esc(p.name) + '</div><div class="pinfo">' + esc(p.info) + '</div></td>';
             html += '<td class="al-center">' + esc(tanshoOddsText(p)) + '</td>';
             html += '<td><span class="checkbox ripple" data-col="1" data-id="c' + p.car + '" data-kind="">' + CHECK_SVG + '</span></td>';
@@ -1262,13 +1244,17 @@
           // its .lastFiveRace tab (前5節: 直近4ヶ月成績＋今場所/前場所/前々場所の結果)
           // is what the player-name-tap modal scrapes/renders now, replacing the
           // old SpRaceInfo4.do (出走表詳細) source.
-          return window.location.origin + '/keiba/ajax/SpZengoYosouInfo.do' +
+          // TODO(autorace-mock): endpoint name inferred from the legacy page's
+          // own script include (AZensanYosouInfo.js, mirroring keiba's
+          // HZengoYosouInfo.js -> SpZengoYosouInfo.do naming) — NOT yet
+          // confirmed against a real network capture like keiba's was.
+          return window.location.origin + '/autorace/ajax/SpZensanYosouInfo.do' +
             '?kaisaiBi=' + encodeURIComponent(CTX_KAISAIBI) +
             '&joCd=' + encodeURIComponent(CTX_JOCODE) +
             '&raceNo=' + encodeURIComponent(CTX_RACENO);
         }
     
-        // Tapping a 馬名 cell shows the race's 前5節 popup (SpZengoYosouInfo.do)
+        // Tapping a 選手名 cell shows the race's 前5節 popup (SpZengoYosouInfo.do)
         // in a native bottom-sheet webview — KeibaVoteView listens for
         // 'showModalUrl' and renders it there.
         function bindPlayerNameCells() {
@@ -1315,7 +1301,7 @@
             return [{ label: '軸1着', kind: 'axis' }, { label: '相手', kind: 'aite' }];
           }
           if (bt === 8) return (wt === 2) ? [{ label: '軸1', kind: 'axis' }, { label: '軸2', kind: 'axis' }, { label: '相手', kind: 'aite' }] : [{ label: '軸', kind: 'axis' }, { label: '相手', kind: 'aite' }];
-          if (bt === 6 || bt === 4) return (wt === 4) ? [{ label: '相手', kind: 'aite' }, { label: '軸2着', kind: 'axis' }] : [{ label: '軸1着', kind: 'axis' }, { label: '相手', kind: 'aite' }];
+          if (bt === 6) return (wt === 4) ? [{ label: '相手', kind: 'aite' }, { label: '軸2着', kind: 'axis' }] : [{ label: '軸1着', kind: 'axis' }, { label: '相手', kind: 'aite' }];
           return [{ label: '軸', kind: 'axis' }, { label: '相手', kind: 'aite' }];
         }
     
@@ -1355,10 +1341,10 @@
         // down to the raw car/waku number the legacy endpoint expects.
         function numFromId(id) { return parseInt(id.substring(1), 10); }
     
-        // 枠 that hold 2 horses for this race — same set the scraper computed
-        // from duplicatableWakuArrayJson on the legacy page, just re-derived here
-        // from PLAYERS (which already carries that grouping via wakuSpan/waku)
-        // since this webview no longer has access to that raw JSON directly.
+        // Autorace has no 枠/frame grouping (waku === car for every player —
+        // see extractDataJavaScript), so this always resolves to an empty
+        // array; kept only so buildAddNormalVoteFormData() stays a close
+        // mirror of keiba's version, where a real dup-waku set can exist.
         function duplicatableWakuArray() {
           var counts = {};
           PLAYERS.forEach(function (p) { counts[p.waku] = (counts[p.waku] || 0) + 1; });
@@ -1413,7 +1399,7 @@
         function sendAddNormalVoteAjax() {
           var body = buildAddNormalVoteFormData().toString();
           console.log('[SpAddNormalVote] request', body);
-          return fetch('/keiba/ajax/SpAddNormalVote.do', {
+          return fetch('/autorace/ajax/SpAddNormalVote.do', {
             method: 'POST',
             credentials: 'include',
             headers: {
@@ -1674,9 +1660,8 @@
     </script>
     
 <script>
-// Data poured in from originHtml via extractDataJavaScript (see keiba_sp_normal_vote.dart).
-window.opSetVoteData({"betType":1,"header":{"title":"金沢 12R","status":"発売中","mode":"通常投票","method":"","tohyoHoshiki":1,"wheelType":1,"multi":false,"kaisaiBi":"20260728","joCode":"41","raceNo":"12"},"players":[{"car":1,"waku":1,"name":"アンジュディアブル","info":"橋本直哉（53.0）","tanshoOdds":"156","fukushoOddsLow":"442","fukushoOddsHigh":"531"},{"car":2,"waku":2,"name":"アンジュループ","info":"濱田達也（53.0）","tanshoOdds":"973","fukushoOddsLow":"280","fukushoOddsHigh":"336"},{"car":3,"waku":3,"name":"アンジュレーヴ","info":"林幻（53.0）","tanshoOdds":"167","fukushoOddsLow":"252","fukushoOddsHigh":"303"},{"car":4,"waku":4,"name":"アンダーザシー","info":"早田功駿（53.0）","tanshoOdds":"76.8","fukushoOddsLow":"115","fukushoOddsHigh":"138"},{"car":5,"waku":5,"name":"アンティーマリー","info":"早田秀二（53.0）","tanshoOdds":"306","fukushoOddsLow":"816","fukushoOddsHigh":"980"},{"car":6,"waku":5,"name":"アンモラル","info":"張田昂（53.0）","tanshoOdds":"520","fukushoOddsLow":"187","fukushoOddsHigh":"225"},{"car":7,"waku":6,"name":"アンワンワールド","info":"半澤慶実（53.0）","tanshoOdds":"146","fukushoOddsLow":"254","fukushoOddsHigh":"305"},{"car":8,"waku":6,"name":"アヴァール","info":"東原悠善（53.0）","tanshoOdds":"509","fukushoOddsLow":"399","fukushoOddsHigh":"479"},{"car":9,"waku":7,"name":"アヴァリエ","info":"藤井勘一郎（55.0）","tanshoOdds":"592","fukushoOddsLow":"850","fukushoOddsHigh":"999"},{"car":10,"waku":7,"name":"アヴァレソー","info":"藤江渉（53.0）","tanshoOdds":"647","fukushoOddsLow":"761","fukushoOddsHigh":"913"},{"car":11,"waku":8,"name":"イーガーアフェクト","info":"藤田凌（55.0）","tanshoOdds":"191","fukushoOddsLow":"1.0","fukushoOddsHigh":"1.0"},{"car":12,"waku":8,"name":"イーグルバイオ","info":"藤本現暉（55.0）","tanshoOdds":"769","fukushoOddsLow":"847","fukushoOddsHigh":"999"}]});
+// Data poured in from originHtml via extractDataJavaScript (see this file's extractDataJavaScript field).
+window.opSetVoteData({"betType":1,"header":{"title":"飯塚 12R","status":"発売中","mode":"通常投票","method":"","tohyoHoshiki":1,"wheelType":1,"multi":false,"kaisaiBi":"20260803","joCode":"05","raceNo":"12"},"players":[{"car":1,"waku":1,"name":"西久保　英幸","info":"(山陽) 0m/B-61/52.083 試-/ST0.21","tanshoOdds":"-"},{"car":2,"waku":2,"name":"小里　健太","info":"(飯塚) 10m/A-210/61.959 試-/ST0.19","tanshoOdds":"-"},{"car":3,"waku":3,"name":"滝谷　　圭","info":"(山陽) 20m/B-100/46.159 試-/ST0.13","tanshoOdds":"-"},{"car":4,"waku":4,"name":"牧瀬　嘉葵","info":"(飯塚) 20m/A-128/68.851 試-/ST0.12","tanshoOdds":"-"},{"car":5,"waku":5,"name":"佐藤　裕児","info":"(飯塚) 30m/A-187/64.813 試-/ST0.20","tanshoOdds":"-"},{"car":6,"waku":6,"name":"内山　雄介","info":"(飯塚) 30m/A-161/66.596 試-/ST0.16","tanshoOdds":"-"},{"car":7,"waku":7,"name":"岡部　　聡","info":"(山陽) 40m/A-7/86.763 試-/ST0.14","tanshoOdds":"-"},{"car":8,"waku":8,"name":"荒尾　　聡","info":"(飯塚) 40m/S-7/124.120 試-/ST0.12","tanshoOdds":"-"}]});
 </script>
 </body>
     </html>
-  
